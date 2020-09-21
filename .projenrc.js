@@ -4,7 +4,7 @@ const {
 
 const AWS_CDK_LATEST_RELEASE = '1.63.0';
 const PROJECT_NAME = 'cdk-soca';
-const PROJECT_DESCRIPTION = 'A sample JSII construct lib for AWS CDK';
+const PROJECT_DESCRIPTION = 'cdk-soca is an AWS CDK construct library that allows you to create the Scale-Out Computing on AWS with AWS CDK in TypeScript or Python';
 
 const project = new ConstructLibraryAws({
   name: PROJECT_NAME,
