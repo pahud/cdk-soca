@@ -2,14 +2,14 @@ const {
   ConstructLibraryAws,
 } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.62.0';
-const PROJECT_NAME = 'cdk-serverless-api';
+const AWS_CDK_LATEST_RELEASE = '1.63.0';
+const PROJECT_NAME = 'cdk-soca';
 const PROJECT_DESCRIPTION = 'A sample JSII construct lib for AWS CDK';
 
 const project = new ConstructLibraryAws({
   name: PROJECT_NAME,
   description: PROJECT_DESCRIPTION,
-  repository: 'https://github.com/pahud/awscdk-jsii-template.git',
+  repository: 'https://github.com/pahud/cdk-soca.git',
   authorName: 'Pahud Hsieh',
   authorEmail: 'pahudnet@gmail.com',
   stability: 'experimental',
@@ -18,6 +18,7 @@ const project = new ConstructLibraryAws({
   keywords: [
     'cdk',
     'aws',
+    'soca',
   ],
 
   catalog: {
@@ -31,13 +32,15 @@ const project = new ConstructLibraryAws({
   cdkVersion: AWS_CDK_LATEST_RELEASE,
   cdkDependencies: [
     '@aws-cdk/core',
-    '@aws-cdk/aws-apigatewayv2',
-    '@aws-cdk/aws-lambda',
+    '@aws-cdk/aws-ec2',
+    '@aws-cdk/aws-efs',
+    '@aws-cdk/aws-iam',
+    '@aws-cdk/aws-s3',
   ],
 
   python: {
-    distName: 'cdk-serverless-api',
-    module: 'cdk_serverless_api'
+    distName: 'cdk-soca',
+    module: 'cdk_soca'
   }
 });
 
