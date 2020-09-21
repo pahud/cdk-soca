@@ -6,6 +6,8 @@
 # Sample 
 
 ```ts
+import * as soca from 'cdk-soca';
+
 // create the CDK application
 const app = new App();
 
