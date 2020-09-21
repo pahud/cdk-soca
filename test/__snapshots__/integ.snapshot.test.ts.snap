@@ -1,0 +1,2523 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`integ snapshot validation 1`] = `
+Object {
+  "Outputs": Object {
+    "EfsStorageEFSAppsDnsOutputA09E6501": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            Object {
+              "Ref": "EfsStorageEFSApps3D603BB9",
+            },
+            ".efs.ap-northeast-1.",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+          ],
+        ],
+      },
+    },
+    "EfsStorageEFSAppsOutput81FDE037": Object {
+      "Value": Object {
+        "Ref": "EfsStorageEFSApps3D603BB9",
+      },
+    },
+    "EfsStorageEFSDataDnsOutput9BAE5124": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            Object {
+              "Ref": "EfsStorageEFSDataC4764BAE",
+            },
+            ".efs.ap-northeast-1.",
+            Object {
+              "Ref": "AWS::URLSuffix",
+            },
+          ],
+        ],
+      },
+    },
+    "EfsStorageEFSDataOutputF1137C93": Object {
+      "Value": Object {
+        "Ref": "EfsStorageEFSDataC4764BAE",
+      },
+    },
+    "EfsStorageEFSMountParametersOutput4EA65103": Object {
+      "Value": "nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport",
+    },
+    "SchedulerSchedulerEIP254BDE25": Object {
+      "Value": Object {
+        "Ref": "SchedulerEIPScheduler20314FED",
+      },
+    },
+    "SocaNetworkClusterID6E1B1A04": Object {
+      "Value": "soca-soca-testing-stack",
+    },
+    "SocaNetworkVpcIDF7EC421E": Object {
+      "Value": Object {
+        "Ref": "SocaNetworkVpcEDB8981E",
+      },
+    },
+  },
+  "Resources": Object {
+    "EfsStorageEFSApps3D603BB9": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "Encrypted": true,
+        "FileSystemTags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/EfsStorage/EFSApps",
+          },
+        ],
+        "ThroughputMode": "bursting",
+      },
+      "Type": "AWS::EFS::FileSystem",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "EfsStorageEFSAppsEfsMountTarget19109AAB0": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "EfsStorageEFSApps3D603BB9",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "WorkloadComputeNodeSecurityGroupC11D647D",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet1Subnet131C8B33",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "EfsStorageEFSAppsEfsMountTarget2D818DC35": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "EfsStorageEFSApps3D603BB9",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "WorkloadComputeNodeSecurityGroupC11D647D",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet2Subnet1DBE9897",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "EfsStorageEFSDataC4764BAE": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "Encrypted": true,
+        "FileSystemTags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/EfsStorage/EFSData",
+          },
+        ],
+        "ThroughputMode": "bursting",
+      },
+      "Type": "AWS::EFS::FileSystem",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "EfsStorageEFSDataEfsMountTarget1F5B79DE9": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "EfsStorageEFSDataC4764BAE",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "WorkloadComputeNodeSecurityGroupC11D647D",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet1Subnet131C8B33",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "EfsStorageEFSDataEfsMountTarget297777E69": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "EfsStorageEFSDataC4764BAE",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "WorkloadComputeNodeSecurityGroupC11D647D",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet2Subnet1DBE9897",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "IamRolesComputeNodeIamRole5D9356C3": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "ec2.",
+                        Object {
+                          "Ref": "AWS::URLSuffix",
+                        },
+                      ],
+                    ],
+                  },
+                  Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "ssm.",
+                        Object {
+                          "Ref": "AWS::URLSuffix",
+                        },
+                      ],
+                    ],
+                  },
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonSSMManagedInstanceCore",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "IamRolesComputeNodeInstanceProfileB3692C2A": Object {
+      "Properties": Object {
+        "Roles": Array [
+          Object {
+            "Ref": "IamRolesComputeNodeIamRole5D9356C3",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "IamRolesComputeNodePermissionsPolicy4E88C101": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/solutions-reference/*",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/solutions-reference",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject",
+                "s3:ListBucket",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/dcv-license.ap-northeast-1/*",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/ec2-linux-nvidia-drivers/*",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/ec2-linux-nvidia-drivers",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "ses:SendEmail",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":ses:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":identity",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "ec2:CreateTags",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":volume",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":network-interface",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "ec2:DescribeVolumes",
+                "ec2:DescribeNetworkInterfaces",
+                "fsx:CreateDataRepositoryTask",
+                "fsx:DescribeFileSystems",
+                "tag:GetResources",
+                "tag:GetTagValues",
+                "tag:GetTagKeys",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "IamRolesComputeNodePermissionsPolicy4E88C101",
+        "Roles": Array [
+          Object {
+            "Ref": "IamRolesComputeNodeIamRole5D9356C3",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "IamRolesLambdaACMIAMRoleBF98882E": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "lambda.",
+                      Object {
+                        "Ref": "AWS::URLSuffix",
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "IamRolesLambdaACMIamRolePolicy695338FC": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "logs:CreateLogGroup",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":logs:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":log-group//aws/lambda/soca-soca-testing-stack*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":logs:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":log-group//aws/lambda/soca-soca-testing-stack*:log-stream:*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "acm:ImportCertificate",
+                "acm:ListCertificates",
+                "acm:AddTagsToCertificate",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "IamRolesLambdaACMIamRolePolicy695338FC",
+        "Roles": Array [
+          Object {
+            "Ref": "IamRolesLambdaACMIAMRoleBF98882E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "IamRolesLambdaSolutionMetricRole95C852CA": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "lambda.",
+                      Object {
+                        "Ref": "AWS::URLSuffix",
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "IamRolesSchedulerIAMRole7D217229": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Array [
+                  Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "ec2.",
+                        Object {
+                          "Ref": "AWS::URLSuffix",
+                        },
+                      ],
+                    ],
+                  },
+                  Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "ssm.",
+                        Object {
+                          "Ref": "AWS::URLSuffix",
+                        },
+                      ],
+                    ],
+                  },
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonSSMManagedInstanceCore",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "IamRolesSchedulerIamInstanceProfileName03D0430C": Object {
+      "Properties": Object {
+        "Roles": Array [
+          Object {
+            "Ref": "IamRolesSchedulerIAMRole7D217229",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "IamRolesSchedulerWritePermissionsPolicy418E8581": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "autoscaling:UpdateAutoScalingGroup",
+                "autoscaling:DeleteAutoScalingGroup",
+                "autoscaling:CreateAutoScalingGroup",
+                "autoscaling:DetachInstances",
+                "ec2:DeleteLaunchTemplate",
+                "ec2:CreateLaunchTemplate",
+                "fsx:CreateDataRepositoryTask",
+              ],
+              "Condition": Object {
+                "StringLikeIfExists": Object {
+                  "autoscaling:LaunchConfigurationName": "soca-soca-testing-stack",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "ec2:CreateTags",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":volume",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":network-interface",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":instance",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "cloudformation:CreateStack",
+                "cloudformation:DeleteStack",
+                "cloudformation:DescribeStacks",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "ec2:RunInstances",
+                "ec2:TerminateInstances",
+                "ec2:CreatePlacementGroup",
+                "ec2:DeletePlacementGroup",
+              ],
+              "Condition": Object {
+                "ForAllValues:ArnEqualsIfExists": Object {
+                  "ec2:Vpc": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":ec2:ap-northeast-1:",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":vpc/",
+                        Object {
+                          "Ref": "SocaNetworkVpcEDB8981E",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":subnet",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":key-pair",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":instance",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1::snapshot",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":launch-template",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":volume",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":security-group",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":placement-group",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":network-interface",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1::image",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":lambda:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":function/soca-soca-testing-stack-Metrics",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "fsx:CreateFileSystem",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":fsx:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":file-system",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "fsx:DeleteFileSystem",
+              "Condition": Object {
+                "StringLike": Object {
+                  "aws:ResourceTag/soca:ClusterId": "soca-soca-testing-stack",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":fsx:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":file-system",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "iam:CreateServiceLinkedRole",
+                "iam:AttachRolePolicy",
+                "iam:PutRolePolicy",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":role/aws-service-role/s3.data-source.lustre.fsx.amazonaws.com",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":role/aws-service-role/autoscaling.amazonaws.com",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":role/aws-service-role/spotfleet.amazonaws.com",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "ses:SendEmail",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":ses:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":identity",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "ec2:CreatePlacementGroup",
+                "ec2:DeletePlacementGroup",
+                "ec2:RequestSpotFleet",
+                "ec2:ModifySpotFleetRequest",
+                "ec2:CancelSpotFleetRequests",
+              ],
+              "Condition": Object {
+                "ForAllValues:ArnEqualsIfExists": Object {
+                  "ec2:Vpc": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":ec2:ap-northeast-1:",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":vpc/",
+                        Object {
+                          "Ref": "SocaNetworkVpcEDB8981E",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject",
+              ],
+              "Condition": Object {
+                "ForAllValues:ArnEqualsIfExists": Object {
+                  "ec2:Vpc": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":ec2:ap-northeast-1:",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":vpc/",
+                        Object {
+                          "Ref": "SocaNetworkVpcEDB8981E",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/solutions-reference/*",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/solutions-reference",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "iam:PassRole",
+                "iam:CreateServiceLinkedRole",
+              ],
+              "Condition": Object {
+                "ForAllValues:ArnEqualsIfExists": Object {
+                  "ec2:Vpc": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":ec2:ap-northeast-1:",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":vpc/",
+                        Object {
+                          "Ref": "SocaNetworkVpcEDB8981E",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "IamRolesComputeNodeIamRole5D9356C3",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::GetAtt": Array [
+                    "IamRolesSpotFleetIAMRole6C6A9CE7",
+                    "Arn",
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "IamRolesSchedulerWritePermissionsPolicy418E8581",
+        "Roles": Array [
+          Object {
+            "Ref": "IamRolesSchedulerIAMRole7D217229",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "IamRolesSolutionMetricPolicy92CEF0F8": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:DeleteLogStream",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":logs:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":log-group//aws/lambda/soca-soca-testing-stack*:log-stream:*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "IamRolesSolutionMetricPolicy92CEF0F8",
+        "Roles": Array [
+          Object {
+            "Ref": "IamRolesLambdaSolutionMetricRole95C852CA",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "IamRolesSpotFleetIAMRole6C6A9CE7": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "spotfleet.",
+                      Object {
+                        "Ref": "AWS::URLSuffix",
+                      },
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "IamRolesSpotFleetPermissionsPolicy9FE74DAE": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "ec2:DescribeImages",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeInstanceStatus",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "ec2:RequestSpotInstances",
+                "ec2:TerminateInstances",
+                "ec2:CreateTags",
+              ],
+              "Condition": Object {
+                "ForAllValues:ArnEqualsIfExists": Object {
+                  "ec2:Vpc": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":ec2:ap-northeast-1:",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":vpc/",
+                        Object {
+                          "Ref": "SocaNetworkVpcEDB8981E",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":ec2:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":instance",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "iam:PassRole",
+              "Condition": Object {
+                "StringEquals": Object {
+                  "iam:PassedToService": Array [
+                    "ec2.amazonaws.com",
+                    "ec2.amazonaws.com.cn",
+                  ],
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "IamRolesComputeNodeIamRole5D9356C3",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "logs:CreateLogGroup",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":logs:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":log-group//aws/lambda/soca-soca-testing-stack*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "IamRolesSpotFleetPermissionsPolicy9FE74DAE",
+        "Roles": Array [
+          Object {
+            "Ref": "IamRolesSpotFleetIAMRole6C6A9CE7",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "Scheduler55EE85DC": Object {
+      "DependsOn": Array [
+        "SchedulerInstanceRoleDefaultPolicyBECCB5FC",
+        "SchedulerInstanceRole0117BFEF",
+      ],
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "IamInstanceProfile": Object {
+          "Ref": "SchedulerInstanceProfileE3AED890",
+        },
+        "ImageId": "ami-0c3fd0f5d33134a76",
+        "InstanceType": "m5.large",
+        "SecurityGroupIds": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "WorkloadSchedulerSecurityGroup35115701",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet1Subnet131C8B33",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/Scheduler/Scheduler",
+          },
+        ],
+        "UserData": Object {
+          "Fn::Base64": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "#!/bin/bash
+
+export PATH=$PATH:/usr/local/bin
+# Deactivate shell to make sure users won't access the cluster if it's not ready
+echo '
+************* SOCA FIRST TIME CONFIGURATION *************
+Hold on, cluster is not ready yet.
+Please wait ~30 minutes as SOCA is being installed.
+Once cluster is ready to use, this message will be replaced automatically and you will be able to SSH.
+*********************************************************' > /etc/nologin
+
+if [ \\"amazonlinux2\\" == \\"amazonlinux2\\" ] || [ \\"amazonlinux2\\" == \\"rhel7\\" ];
+  then
+    usermod --shell /usr/sbin/nologin ec2-user
+fi
+
+if [ \\"amazonlinux2\\" == \\"centos7\\" ];
+  then
+    usermod --shell /usr/sbin/nologin centos
+fi
+
+# Install awscli
+if [ \\"amazonlinux2\\" == \\"centos7\\" ] || [ \\"amazonlinux2\\" == \\"rhel7\\" ];
+then
+  EASY_INSTALL=$(which easy_install-2.7)
+  $EASY_INSTALL pip
+  PIP=$(which pip2.7)
+  $PIP install awscli
+fi
+
+# Disable automatic motd update if using ALI
+if [ \\"amazonlinux2\\" == \\"amazonlinux2\\" ];
+then
+  /usr/sbin/update-motd --disable
+  rm /etc/cron.d/update-motd
+  rm -f /etc/update-motd.d/*
+fi
+
+AWS=$(which aws)
+echo export \\"SOCA_BASE_OS=amazonlinux2\\" >> /etc/environment
+echo export \\"SOCA_CONFIGURATION=soca-soca-testing-stack\\" >> /etc/environment
+echo export \\"AWS_DEFAULT_REGION=ap-northeast-1 \\" >> /etc/environment
+echo export \\"SOCA_INSTALL_BUCKET=solutions-reference\\" >> /etc/environment
+echo export \\"SOCA_INSTALL_BUCKET_FOLDER=scale-out-computing-on-aws/v2.5.0\\" >> /etc/environment
+echo export \\"SOCA_VERSION=2.5.0\\" >> /etc/environment
+echo export \\"SOCA_INSTALL_AMI=ami-0c3fd0f5d33134a76\\" >> /etc/environment
+source /etc/environment
+
+# Tag EBS disks manually as CFN ASG does not support it
+AWS_AVAIL_ZONE=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
+AWS_REGION=$(echo \\"$AWS_AVAIL_ZONE\\" | sed \\"s/[a-z]$//\\")
+AWS_INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
+EBS_IDS=$(aws ec2 describe-volumes --filters Name=attachment.instance-id,Values=\\"$AWS_INSTANCE_ID\\" --region $AWS_REGION --query \\"Volumes[*].[VolumeId]\\" --out text | tr \\"
+\\" \\" \\")
+$AWS ec2 create-tags --resources $EBS_IDS --region $AWS_REGION --tags Key=Name,Value=\\"soca-soca-testing-stack Root Disk\\" \\"Key=soca:ClusterId,Value=soca-soca-testing-stack\\"
+
+# Tag Network Adapter for the Scheduler
+ENI_IDS=$(aws ec2 describe-network-interfaces --filters Name=attachment.instance-id,Values=\\"$AWS_INSTANCE_ID\\" --region $AWS_REGION --query \\"NetworkInterfaces[*].[NetworkInterfaceId]\\" --out text | tr \\"
+\\" \\" \\")
+$AWS ec2 create-tags --resources $ENI_IDS --region $AWS_REGION --tags Key=Name,Value=\\"soca-soca-testing-stack Scheduler Network Adapter\\" \\"Key=soca:ClusterId,Value=soca-soca-testing-stack\\"
+
+echo \\"@reboot /bin/aws s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/SchedulerPostReboot.sh /root && /bin/bash /root/SchedulerPostReboot.sh solutions-reference scale-out-computing-on-aws/v2.5.0 ldapUserName 'ldapUserPassword!123' >> /root/PostRebootConfig.log 2>&1\\" | crontab -
+AWS=$(which aws)
+$AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/config.cfg /root/
+$AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/requirements.txt /root/
+$AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/Scheduler.sh /root/
+/bin/bash /root/Scheduler.sh ",
+                Object {
+                  "Ref": "EfsStorageEFSDataC4764BAE",
+                },
+                ".efs.ap-northeast-1.",
+                Object {
+                  "Ref": "AWS::URLSuffix",
+                },
+                " ",
+                Object {
+                  "Ref": "EfsStorageEFSApps3D603BB9",
+                },
+                ".efs.ap-northeast-1.",
+                Object {
+                  "Ref": "AWS::URLSuffix",
+                },
+                " >> /root/Scheduler.sh.log 2>&1
+",
+              ],
+            ],
+          },
+        },
+      },
+      "Type": "AWS::EC2::Instance",
+    },
+    "SchedulerEIPScheduler20314FED": Object {
+      "Properties": Object {
+        "Domain": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+        "InstanceId": Object {
+          "Ref": "Scheduler55EE85DC",
+        },
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "SchedulerInstanceProfileE3AED890": Object {
+      "Properties": Object {
+        "Roles": Array [
+          Object {
+            "Ref": "SchedulerInstanceRole0117BFEF",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::InstanceProfile",
+    },
+    "SchedulerInstanceRole0117BFEF": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ec2.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/AmazonSSMManagedInstanceCore",
+              ],
+            ],
+          },
+        ],
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/Scheduler/Scheduler",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "SchedulerInstanceRoleDefaultPolicyBECCB5FC": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "pricing:GetProducts",
+                "budgets:ViewBudget",
+                "ec2:DescribeInstances",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeImages",
+                "ec2:DescribeInstanceAttribute",
+                "ec2:DescribeInstanceTypes",
+                "ec2:DescribeReservedInstances",
+                "ec2:DescribeSpotInstanceRequests",
+                "ec2:DescribeVpcClassicLink",
+                "ec2:DescribeVolumes",
+                "ec2:DescribePlacementGroups",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeLaunchTemplates",
+                "ec2:DescribeLaunchTemplateVersions",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribeSpotFleetRequests",
+                "ec2:DescribeSpotFleetInstances",
+                "fsx:DescribeFileSystems",
+                "autoscaling:DescribeAutoScalingGroups",
+                "autoscaling:DescribeScalingActivities",
+                "autoscaling:DescribeLaunchConfigurations",
+                "elasticloadbalancing:DescribeRules",
+                "elasticloadbalancing:DescribeListeners",
+                "elasticloadbalancing:DescribeTargetGroups",
+                "savingsplans:DescribeSavingsPlans",
+                "servicequotas:ListServiceQuotas",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "autoscaling:UpdateAutoScalingGroup",
+                "autoscaling:DeleteAutoScalingGroup",
+                "autoscaling:CreateAutoScalingGroup",
+                "autoscaling:DetachInstances",
+                "ec2:DeleteLaunchTemplate",
+                "ec2:CreateLaunchTemplate",
+                "fsx:CreateDataRepositoryTask",
+              ],
+              "Condition": Object {
+                "StringLikeIfExists": Object {
+                  "autoscaling:LaunchConfigurationName": "soca-soca-testing-stack",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "ec2:CreateTags",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":volume",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":network-interface",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":instance",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "cloudformation:CreateStack",
+                "cloudformation:DeleteStack",
+                "cloudformation:DescribeStacks",
+              ],
+              "Condition": Object {
+                "ForAllValues:StringEquals": Object {
+                  "cloudformation:TemplateURL": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "https://s3.",
+                        Object {
+                          "Ref": "AWS::URLSuffix",
+                        },
+                        "/solutions-reference/scale-out-computing-on-aws/v2.5.0/templates/ComputeNode.template",
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "ec2:RunInstances",
+                "ec2:TerminateInstances",
+                "ec2:CreatePlacementGroup",
+                "ec2:DeletePlacementGroup",
+              ],
+              "Condition": Object {
+                "ForAllValues:ArnEqualsIfExists": Object {
+                  "ec2:Vpc": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":ec2:ap-northeast-1:",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":vpc/",
+                        Object {
+                          "Ref": "SocaNetworkVpcEDB8981E",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":subnet",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":key-pair",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":instance",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":launch-template",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":volume",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":security-group",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":placement-group",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1:",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":network-interface",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1::snapshot",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ec2:ap-northeast-1::image",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":lambda:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":function/soca-soca-testing-stack-Metrics",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "fsx:CreateFileSystem",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":fsx:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":file-system",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "fsx:DeleteFileSystem",
+              "Condition": Object {
+                "StringLike": Object {
+                  "aws:ResourceTag/soca:ClusterId": "soca-soca-testing-stack",
+                },
+              },
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":fsx:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":file-system",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "iam:CreateServiceLinkedRole",
+                "iam:AttachRolePolicy",
+                "iam:PutRolePolicy",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":role/aws-service-role/s3.data-source.lustre.fsx.amazonaws.com/*",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":role/aws-service-role/autoscaling.amazonaws.com/*",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::",
+                      Object {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":role/aws-service-role/spotfleet.amazonaws.com/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "ses:SendEmail",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":ses:ap-northeast-1:",
+                    Object {
+                      "Ref": "AWS::AccountId",
+                    },
+                    ":identity",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "ec2:CreatePlacementGroup",
+                "ec2:DeletePlacementGroup",
+                "ec2:RequestSpotFleet",
+                "ec2:ModifySpotFleetRequest",
+                "ec2:CancelSpotFleetRequests",
+              ],
+              "Condition": Object {
+                "ForAllValues:ArnEqualsIfExists": Object {
+                  "ec2:Vpc": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":ec2:ap-northeast-1:",
+                        Object {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":vpc/",
+                        Object {
+                          "Ref": "SocaNetworkVpcEDB8981E",
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/solutions-reference",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::/solutions-reference/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "SchedulerInstanceRoleDefaultPolicyBECCB5FC",
+        "Roles": Array [
+          Object {
+            "Ref": "SchedulerInstanceRole0117BFEF",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "SocaNetworkVpcEDB8981E": Object {
+      "Properties": Object {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "SocaNetworkVpcIGW108E19B1": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "SocaNetworkVpcPrivateSubnet1DefaultRouteF548AFC8": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet1NATGatewayCC754F85",
+        },
+        "RouteTableId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet1RouteTableAE0ABFE4",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "SocaNetworkVpcPrivateSubnet1RouteTableAE0ABFE4": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "SocaNetworkVpcPrivateSubnet1RouteTableAssociation0BB54921": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet1RouteTableAE0ABFE4",
+        },
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet1Subnet131C8B33",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "SocaNetworkVpcPrivateSubnet1Subnet131C8B33": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.128.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "SocaNetworkVpcPrivateSubnet2DefaultRoute5061FCB4": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet1NATGatewayCC754F85",
+        },
+        "RouteTableId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet2RouteTable138C14C6",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "SocaNetworkVpcPrivateSubnet2RouteTable138C14C6": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "SocaNetworkVpcPrivateSubnet2RouteTableAssociationA17C8A2B": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet2RouteTable138C14C6",
+        },
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPrivateSubnet2Subnet1DBE9897",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "SocaNetworkVpcPrivateSubnet2Subnet1DBE9897": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.192.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "SocaNetworkVpcPublicSubnet1DefaultRoute05ED17CC": Object {
+      "DependsOn": Array [
+        "SocaNetworkVpcVPCGW782C0989",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "SocaNetworkVpcIGW108E19B1",
+        },
+        "RouteTableId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet1RouteTableB8E81A7E",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "SocaNetworkVpcPublicSubnet1EIP484EC55D": Object {
+      "Properties": Object {
+        "Domain": "vpc",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "SocaNetworkVpcPublicSubnet1NATGatewayCC754F85": Object {
+      "Properties": Object {
+        "AllocationId": Object {
+          "Fn::GetAtt": Array [
+            "SocaNetworkVpcPublicSubnet1EIP484EC55D",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet1SubnetF2AC23F6",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "SocaNetworkVpcPublicSubnet1RouteTableAssociation2A06C2F8": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet1RouteTableB8E81A7E",
+        },
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet1SubnetF2AC23F6",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "SocaNetworkVpcPublicSubnet1RouteTableB8E81A7E": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "SocaNetworkVpcPublicSubnet1SubnetF2AC23F6": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            0,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.0.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "SocaNetworkVpcPublicSubnet2DefaultRouteCF133AD8": Object {
+      "DependsOn": Array [
+        "SocaNetworkVpcVPCGW782C0989",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "SocaNetworkVpcIGW108E19B1",
+        },
+        "RouteTableId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet2RouteTable0F1A9570",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "SocaNetworkVpcPublicSubnet2RouteTable0F1A9570": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "SocaNetworkVpcPublicSubnet2RouteTableAssociationC835EA1A": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet2RouteTable0F1A9570",
+        },
+        "SubnetId": Object {
+          "Ref": "SocaNetworkVpcPublicSubnet2SubnetA888971E",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "SocaNetworkVpcPublicSubnet2SubnetA888971E": Object {
+      "Properties": Object {
+        "AvailabilityZone": Object {
+          "Fn::Select": Array [
+            1,
+            Object {
+              "Fn::GetAZs": "",
+            },
+          ],
+        },
+        "CidrBlock": "10.0.64.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "soca-testing-stack/SocaNetwork/Vpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "SocaNetworkVpcVPCGW782C0989": Object {
+      "Properties": Object {
+        "InternetGatewayId": Object {
+          "Ref": "SocaNetworkVpcIGW108E19B1",
+        },
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+    "WorkloadComputeNodeSecurityGroupC11D647D": Object {
+      "Properties": Object {
+        "GroupDescription": "soca-testing-stack/Workload/ComputeNodeSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLTRAFFIC3E554A86": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL TRAFFIC",
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "-1",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadSchedulerSecurityGroup7E5A7062ALLTRAFFIC139E7349": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:ALL TRAFFIC",
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "-1",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadSchedulerSecurityGroup35115701": Object {
+      "Properties": Object {
+        "GroupDescription": "soca-testing-stack/Workload/SchedulerSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "WorkloadSchedulerSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLTRAFFIC0582CD26": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL TRAFFIC",
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "-1",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadSchedulerSecurityGroupfromsocatestingstackWorkloadSchedulerSecurityGroup7E5A70628443B2E4431D": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:8443",
+        "FromPort": 8443,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "ToPort": 8443,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+  },
+}
+`;
