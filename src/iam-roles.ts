@@ -58,7 +58,7 @@ export class IamRoles extends cdk.Construct {
           region: '',
           resourceName: `${props.s3InstallBucketName}`,
         }),
-      ]
+      ],
     }))
     computeNodePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
@@ -87,20 +87,20 @@ export class IamRoles extends cdk.Construct {
           region: '',
           resourceName: 'ec2-linux-nvidia-drivers',
         }),
-      ]
+      ],
     }))
     computeNodePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: ['ses:SendEmail'],
       resources: [
         stack.formatArn({ service: 'ses', resource: 'identity' }),
-      ]
+      ],
     }))
     computeNodePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: ['ec2:CreateTags'],
       resources: [
         stack.formatArn({ service: 'ec2', resource: 'volume' }),
         stack.formatArn({ service: 'ec2', resource: 'network-interface' }),
-      ]
+      ],
     }))
     computeNodePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
@@ -112,7 +112,7 @@ export class IamRoles extends cdk.Construct {
         'tag:GetTagValues',
         'tag:GetTagKeys',
       ],
-      resources: ['*']
+      resources: ['*'],
     }))
 
 
@@ -153,9 +153,9 @@ export class IamRoles extends cdk.Construct {
       ],
       conditions: {
         'ForAllValues:ArnEqualsIfExists': {
-          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId })
-        }
-      }
+          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
+        },
+      },
     }))
     spotFleetPermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
@@ -165,13 +165,13 @@ export class IamRoles extends cdk.Construct {
         computeNodeIamRole.roleArn,
       ],
       conditions: {
-        'StringEquals': {
+        StringEquals: {
           'iam:PassedToService': [
             'ec2.amazonaws.com',
             'ec2.amazonaws.com.cn',
           ],
-        }
-      }
+        },
+      },
     }))
 
     spotFleetPermissionsPolicy.attachToRole(spotFleetIAMRole)
@@ -235,10 +235,10 @@ export class IamRoles extends cdk.Construct {
       ],
       resources: ['*'],
       conditions: {
-        'StringLikeIfExists': {
+        StringLikeIfExists: {
           'autoscaling:LaunchConfigurationName': props.network.clusterId,
-        }
-      }
+        },
+      },
     }))
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
@@ -281,9 +281,9 @@ export class IamRoles extends cdk.Construct {
       ],
       conditions: {
         'ForAllValues:ArnEqualsIfExists': {
-          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId })
+          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
         },
-      }
+      },
     }))
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: ['lambda:InvokeFunction'],
@@ -313,10 +313,10 @@ export class IamRoles extends cdk.Construct {
         }),
       ],
       conditions: {
-        'StringLike': {
+        StringLike: {
           'aws:ResourceTag/soca:ClusterId': props.network.clusterId,
-        }
-      }
+        },
+      },
     }))
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
@@ -367,9 +367,9 @@ export class IamRoles extends cdk.Construct {
       resources: [ '*' ],
       conditions: {
         'ForAllValues:ArnEqualsIfExists': {
-          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId })
-        }
-      }
+          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
+        },
+      },
     }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
@@ -397,9 +397,9 @@ export class IamRoles extends cdk.Construct {
       ],
       conditions: {
         'ForAllValues:ArnEqualsIfExists': {
-          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId })
-        }
-      }
+          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
+        },
+      },
     }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
@@ -412,9 +412,9 @@ export class IamRoles extends cdk.Construct {
       ],
       conditions: {
         'ForAllValues:ArnEqualsIfExists': {
-          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId })
-        }
-      }
+          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
+        },
+      },
     }));
 
     // attach to the role
@@ -443,7 +443,7 @@ export class IamRoles extends cdk.Construct {
         stack.formatArn({ 
           service: 'logs',
           resource: 'log-group',
-          resourceName: `/aws/lambda/${props.network.clusterId}*`
+          resourceName: `/aws/lambda/${props.network.clusterId}*`,
         }),
       ],
     }))
@@ -457,7 +457,7 @@ export class IamRoles extends cdk.Construct {
         stack.formatArn({
           service: 'logs',
           resource: 'log-group',
-          resourceName: `/aws/lambda/${props.network.clusterId}*:log-stream:*`
+          resourceName: `/aws/lambda/${props.network.clusterId}*:log-stream:*`,
         }),
       ],
     }))
@@ -480,7 +480,7 @@ export class IamRoles extends cdk.Construct {
         stack.formatArn({
           service: 'logs',
           resource: 'log-group',
-          resourceName: `/aws/lambda/${props.network.clusterId}*`
+          resourceName: `/aws/lambda/${props.network.clusterId}*`,
         }),
       ],
     }))
@@ -493,7 +493,7 @@ export class IamRoles extends cdk.Construct {
         stack.formatArn({
           service: 'logs',
           resource: 'log-group',
-          resourceName: `/aws/lambda/${props.network.clusterId}*:log-stream:*`
+          resourceName: `/aws/lambda/${props.network.clusterId}*:log-stream:*`,
         }),
       ],
     }))

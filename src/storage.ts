@@ -51,7 +51,7 @@ export class EfsStorage extends cdk.Construct {
     new cdk.CfnOutput(this, 'EFSAppsDnsOutput', { value: this.efsAppsDns })
     new cdk.CfnOutput(this, 'EFSDataDnsOutput', { value: this.efsDataDns })
     new cdk.CfnOutput(this, 'EFSMountParametersOutput', { 
-      value: 'nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport'
+      value: 'nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport',
     })
   }
 }

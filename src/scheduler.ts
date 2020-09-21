@@ -171,7 +171,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
       conditions: {
         StringLikeIfExists: {
           'autoscaling:LaunchConfigurationName': props.network.clusterId,
-        }
+        },
       },
     }));
 
@@ -196,7 +196,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
       conditions: {
         'ForAllValues:StringEquals': {
           'cloudformation:TemplateURL': `https://s3.${urlsuffix}/${s3InstallBucket}/${s3InstallFolder}/templates/ComputeNode.template`,
-        }
+        },
       },
     }));
 
@@ -205,17 +205,17 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
         'ec2:RunInstances',
         'ec2:TerminateInstances',
         'ec2:CreatePlacementGroup',
-        'ec2:DeletePlacementGroup'
+        'ec2:DeletePlacementGroup',
       ],
       resources: [
         ...['subnet', 'key-pair', 'instance', 'launch-template', 'volume', 'security-group', 'placement-group', 'network-interface'].map(resource => stack.formatArn({ service: 'ec2', resource })).concat(
-        ['snapshot', 'image'].map(resource => stack.formatArn({ service: 'ec2', resource, account: '' })))
+          ['snapshot', 'image'].map(resource => stack.formatArn({ service: 'ec2', resource, account: '' }))),
       ],
       conditions: {
         'ForAllValues:ArnEqualsIfExists': {
-          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId })
-        }
-      }
+          'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
+        },
+      },
     }));
 
     scheduler.addToRolePolicy(new iam.PolicyStatement({
@@ -227,7 +227,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
           service: 'lambda', 
           resource: 'function', 
           resourceName: `${props.network.clusterId}-Metrics`,
-        })
+        }),
       ],
     }));
 
@@ -239,7 +239,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
         stack.formatArn({
           service: 'fsx',
           resource: 'file-system',
-        })
+        }),
       ],
     }));
 
@@ -251,13 +251,13 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
         stack.formatArn({
           service: 'fsx',
           resource: 'file-system',
-        })
+        }),
       ],
       conditions: {
         StringLike: {
           'aws:ResourceTag/soca:ClusterId': props.network.clusterId,
-        }
-      }
+        },
+      },
     }));
 
     scheduler.addToRolePolicy(new iam.PolicyStatement({
@@ -316,8 +316,8 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
             resource: 'vpc',
             resourceName: props.network.vpc.vpcId,
           }),
-        }
-      }
+        },
+      },
     }));
 
     scheduler.addToRolePolicy(new iam.PolicyStatement({
