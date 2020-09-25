@@ -79,7 +79,7 @@
     "@aws-cdk/core" "1.64.0"
     constructs "^3.0.4"
 
-"@aws-cdk/aws-iam@1.63.0", "@aws-cdk/aws-iam@^1.63.0":
+"@aws-cdk/aws-iam@1.63.0":
   version "1.63.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-iam/-/aws-iam-1.63.0.tgz#5bea211498a81e2c7f19e7e7d335e663195af02d"
   integrity sha512-d+kkz9I9v5an3RrsmOhXxyQLop/SB90YoDfmpd9JdKkDyMGSZN+e5IMvqye0iGC7rfA6tkVQb9tVEBdlXvZbZQ==
@@ -88,7 +88,7 @@
     "@aws-cdk/region-info" "1.63.0"
     constructs "^3.0.4"
 
-"@aws-cdk/aws-iam@1.64.0":
+"@aws-cdk/aws-iam@1.64.0", "@aws-cdk/aws-iam@^1.63.0":
   version "1.64.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-iam/-/aws-iam-1.64.0.tgz#c3f2cc6d97c010b60b9c917a89ba97431f6fc282"
   integrity sha512-3z1MREVm5AKeqBbBNsRSWv/bDGnWACN0Sd2KBuYwDSNxW8gOEK9fdgFHvkjJkN2THBOrN0JqyjFZ8QZ0Y8VspQ==
