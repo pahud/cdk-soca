@@ -6,7 +6,7 @@
 # PR...
 #
 # Only does approvals! A different GitHub Action takes care of merging.
-name: Auto-approve Dependabot
+name: Auto-approve CdkAutomation
 on:
   pull_request:
     types:
