@@ -11,9 +11,11 @@ jobs:
     steps:
       - uses: Naturalclar/issue-action@f229cda
         with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}",
           title-or-body: "title"
-          parameters: '[ 
-            {"keywords": ["yarn"], "labels": ["yarn"], "assignees": ["pahud"]},
-            {"keywords": ["projen"], "labels": ["projen"], "assignees": ["pahud"]},
-          ]'
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          parameters: >
+          [
+          {"keywords":["[yarn upgrade]",""],"labels":["yarn/upgrade"],"assignees":["pahud"]},
+          {"keywords":["[projen upgrade]",""],"labels":["projen/upgrade"],"assignees":["pahud"]},
+          ],
+          
