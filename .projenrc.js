@@ -45,11 +45,13 @@ const project = new ConstructLibraryAws({
 });
 
 project.mergify.addRule({
-  name: 'Merge pull requests for projen upgrade if CI passes',
+  name: 'Merge approved pull requests with auto-merge label if CI passes',
   conditions: [
-    'author=cdk-automation',
+    '#approved-reviews-by>=1',
     'status-success=build',
-    'title=chore: upgrade projen',
+    'label=auto-merge',
+    'label!=do-not-merge',
+    'label!=work-in-progress',
   ],
   actions: {
     merge: {
