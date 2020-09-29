@@ -14,8 +14,8 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}",
           title-or-body: "title"
           parameters: >
-          [
-          {"keywords":["yarn upgrade","upgrade yarn"],"labels":["yarn/upgrade"],"assignees":["pahud"]},
-          {"keywords":["projen upgrade","upgrade projen"],"labels":["projen/upgrade"],"assignees":["pahud"]}
-          ]
+            [
+            {"keywords":["yarn upgrade","upgrade yarn"],"labels":["yarn/upgrade"],"assignees":["pahud"]},
+            {"keywords":["projen upgrade","upgrade projen"],"labels":["projen/upgrade"],"assignees":["pahud"]}
+            ]
           
