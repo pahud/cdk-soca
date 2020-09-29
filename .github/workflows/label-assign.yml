@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: Naturalclar/issue-action@f229cda
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}",
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
           title-or-body: "title"
           parameters: >
             [
