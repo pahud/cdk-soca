@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.18 (2020-09-29)
+
+
+### Features
+
+* **mergify:** allow mergify to auto-merge projen upgrade PRs once build passes ([5a3d84b](https://github.com/pahud/cdk-soca/commit/5a3d84ba653578b69b74d0758863fc5083c6f4bc))
+
 ### 0.1.17 (2020-09-29)
 
 ### 0.1.16 (2020-09-29)
