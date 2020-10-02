@@ -1,5 +1,5 @@
-import * as cdk from '@aws-cdk/core';
 import * as iam from '@aws-cdk/aws-iam';
+import * as cdk from '@aws-cdk/core';
 import { Network } from './network';
 
 export interface IamRolesProps {
@@ -19,9 +19,9 @@ export class IamRoles extends cdk.Construct {
   constructor(scope: cdk.Construct, id: string, props: IamRolesProps) {
     super(scope, id);
 
-    const urlsuffix = cdk.Stack.of(this).urlSuffix
-    const stack = cdk.Stack.of(this)
-    const region = cdk.Stack.of(this).region
+    const urlsuffix = cdk.Stack.of(this).urlSuffix;
+    const stack = cdk.Stack.of(this);
+    const region = cdk.Stack.of(this).region;
 
     // ComputeNodeIAMRole
     const computeNodeIamRole = new iam.Role(this, 'ComputeNodeIamRole', {
@@ -29,9 +29,9 @@ export class IamRoles extends cdk.Construct {
         new iam.ServicePrincipal(`ec2.${urlsuffix}`),
         new iam.ServicePrincipal(`ssm.${urlsuffix}`),
       ),
-    })
+    });
 
-    computeNodeIamRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'))
+    computeNodeIamRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'));
 
     // PolicyName: ComputeNodePermissions
     const computeNodePermissionsPolicy = new iam.Policy(this, 'ComputeNodePermissionsPolicy');
@@ -59,7 +59,7 @@ export class IamRoles extends cdk.Construct {
           resourceName: `${props.s3InstallBucketName}`,
         }),
       ],
-    }))
+    }));
     computeNodePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         's3:GetObject',
@@ -88,20 +88,20 @@ export class IamRoles extends cdk.Construct {
           resourceName: 'ec2-linux-nvidia-drivers',
         }),
       ],
-    }))
+    }));
     computeNodePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: ['ses:SendEmail'],
       resources: [
         stack.formatArn({ service: 'ses', resource: 'identity' }),
       ],
-    }))
+    }));
     computeNodePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: ['ec2:CreateTags'],
       resources: [
         stack.formatArn({ service: 'ec2', resource: 'volume' }),
         stack.formatArn({ service: 'ec2', resource: 'network-interface' }),
       ],
-    }))
+    }));
     computeNodePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'ec2:DescribeVolumes',
@@ -113,24 +113,24 @@ export class IamRoles extends cdk.Construct {
         'tag:GetTagKeys',
       ],
       resources: ['*'],
-    }))
+    }));
 
 
     // attach to the role
-    computeNodePermissionsPolicy.attachToRole(computeNodeIamRole)
-    this.computeNodeIamRole = computeNodeIamRole
+    computeNodePermissionsPolicy.attachToRole(computeNodeIamRole);
+    this.computeNodeIamRole = computeNodeIamRole;
 
     // ComputeNodeInstanceProfile
     this.computeNodeInstanceProfileName = new iam.CfnInstanceProfile(this, 'ComputeNodeInstanceProfile', {
       roles: [this.computeNodeIamRole.roleName],
-    }).ref
+    }).ref;
 
     // SpotFleetIAMRole
     const spotFleetIAMRole = new iam.Role(this, 'SpotFleetIAMRole', {
       assumedBy: new iam.CompositePrincipal(
         new iam.ServicePrincipal(`spotfleet.${urlsuffix}`),
       ),
-    })
+    });
 
     // PolicyName: SpotFleetPermissions
     const spotFleetPermissionsPolicy = new iam.Policy(this, 'SpotFleetPermissionsPolicy');
@@ -141,7 +141,7 @@ export class IamRoles extends cdk.Construct {
         'ec2:DescribeInstanceStatus',
       ],
       resources: ['*'],
-    }))
+    }));
     spotFleetPermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'ec2:RequestSpotInstances',
@@ -156,7 +156,7 @@ export class IamRoles extends cdk.Construct {
           'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
         },
       },
-    }))
+    }));
     spotFleetPermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'iam:PassRole',
@@ -172,9 +172,9 @@ export class IamRoles extends cdk.Construct {
           ],
         },
       },
-    }))
+    }));
 
-    spotFleetPermissionsPolicy.attachToRole(spotFleetIAMRole)
+    spotFleetPermissionsPolicy.attachToRole(spotFleetIAMRole);
 
     // SchedulerIAMRole
     const schedulerIAMRole = new iam.Role(this, 'SchedulerIAMRole', {
@@ -182,9 +182,9 @@ export class IamRoles extends cdk.Construct {
         new iam.ServicePrincipal(`ec2.${urlsuffix}`),
         new iam.ServicePrincipal(`ssm.${urlsuffix}`),
       ),
-    })
+    });
 
-    schedulerIAMRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'))
+    schedulerIAMRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'));
 
     // PolicyName: SchedulerReadPermissions
     const schedulerReadPermissionsPolicy = new iam.Policy(this, 'SchedulerReadPermissionsPolicy');
@@ -220,7 +220,7 @@ export class IamRoles extends cdk.Construct {
         'servicequotas:ListServiceQuotas',
       ],
       resources: ['*'],
-    }))
+    }));
     // PolicyName: SchedulerWritePermissions
     const schedulerWritePermissionsPolicy = new iam.Policy(this, 'SchedulerWritePermissionsPolicy');
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
@@ -239,7 +239,7 @@ export class IamRoles extends cdk.Construct {
           'autoscaling:LaunchConfigurationName': props.network.clusterId,
         },
       },
-    }))
+    }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'ec2:CreateTags',
@@ -249,7 +249,7 @@ export class IamRoles extends cdk.Construct {
         stack.formatArn({ service: 'ec2', resource: 'network-interface' }),
         stack.formatArn({ service: 'ec2', resource: 'instance' }),
       ],
-    }))
+    }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'cloudformation:CreateStack',
@@ -259,7 +259,7 @@ export class IamRoles extends cdk.Construct {
       resources: ['*'],
       // conditions: {
       // }
-    }))
+    }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'ec2:RunInstances',
@@ -284,7 +284,7 @@ export class IamRoles extends cdk.Construct {
           'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
         },
       },
-    }))
+    }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: ['lambda:InvokeFunction'],
       resources: [
@@ -294,7 +294,7 @@ export class IamRoles extends cdk.Construct {
           resourceName: `${props.network.clusterId}-Metrics`,
         }),
       ],
-    }))
+    }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: ['fsx:CreateFileSystem'],
       resources: [
@@ -303,7 +303,7 @@ export class IamRoles extends cdk.Construct {
           resource: 'file-system',
         }),
       ],
-    }))
+    }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: ['fsx:DeleteFileSystem'],
       resources: [
@@ -317,7 +317,7 @@ export class IamRoles extends cdk.Construct {
           'aws:ResourceTag/soca:ClusterId': props.network.clusterId,
         },
       },
-    }))
+    }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'iam:CreateServiceLinkedRole',
@@ -344,7 +344,7 @@ export class IamRoles extends cdk.Construct {
           resourceName: 'aws-service-role/spotfleet.amazonaws.com',
         }),
       ],
-    }))
+    }));
     schedulerWritePermissionsPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'ses:SendEmail',
@@ -364,7 +364,7 @@ export class IamRoles extends cdk.Construct {
         'ec2:ModifySpotFleetRequest',
         'ec2:CancelSpotFleetRequests',
       ],
-      resources: [ '*' ],
+      resources: ['*'],
       conditions: {
         'ForAllValues:ArnEqualsIfExists': {
           'ec2:Vpc': stack.formatArn({ service: 'ec2', resource: 'vpc', resourceName: props.network.vpc.vpcId }),
@@ -418,20 +418,20 @@ export class IamRoles extends cdk.Construct {
     }));
 
     // attach to the role
-    schedulerWritePermissionsPolicy.attachToRole(schedulerIAMRole)
-    this.schedulerIAMRole = schedulerIAMRole
+    schedulerWritePermissionsPolicy.attachToRole(schedulerIAMRole);
+    this.schedulerIAMRole = schedulerIAMRole;
 
     // SchedulerIAMInstanceProfile
     this.schedulerIamInstanceProfileName = new iam.CfnInstanceProfile(this, 'SchedulerIamInstanceProfileName', {
-      roles: [this.schedulerIAMRole.roleName ],
-    }).ref
+      roles: [this.schedulerIAMRole.roleName],
+    }).ref;
 
     // LambdaSolutionMetricRole
     const lambdaSolutionMetricRole = new iam.Role(this, 'LambdaSolutionMetricRole', {
       assumedBy: new iam.CompositePrincipal(
         new iam.ServicePrincipal(`lambda.${urlsuffix}`),
       ),
-    })
+    });
 
     // PolicyName: SolutionMetric
     const solutionMetricPolicy = new iam.Policy(this, 'SolutionMetricPolicy');
@@ -440,13 +440,13 @@ export class IamRoles extends cdk.Construct {
         'logs:CreateLogGroup',
       ],
       resources: [
-        stack.formatArn({ 
+        stack.formatArn({
           service: 'logs',
           resource: 'log-group',
           resourceName: `/aws/lambda/${props.network.clusterId}*`,
         }),
       ],
-    }))
+    }));
     solutionMetricPolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'logs:CreateLogStream',
@@ -460,15 +460,15 @@ export class IamRoles extends cdk.Construct {
           resourceName: `/aws/lambda/${props.network.clusterId}*:log-stream:*`,
         }),
       ],
-    }))
-    solutionMetricPolicy.attachToRole(lambdaSolutionMetricRole)
+    }));
+    solutionMetricPolicy.attachToRole(lambdaSolutionMetricRole);
 
     // LambdaACMIAMRole
     const lambdaACMIAMRole = new iam.Role(this, 'LambdaACMIAMRole', {
       assumedBy: new iam.CompositePrincipal(
         new iam.ServicePrincipal(`lambda.${urlsuffix}`),
       ),
-    })
+    });
 
     // PolicyName: ${clusterId}-LambdaACMIamRole-Policy
     const lambdaACMIamRolePolicy = new iam.Policy(this, 'LambdaACMIamRolePolicy');
@@ -483,7 +483,7 @@ export class IamRoles extends cdk.Construct {
           resourceName: `/aws/lambda/${props.network.clusterId}*`,
         }),
       ],
-    }))
+    }));
     lambdaACMIamRolePolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'logs:CreateLogStream',
@@ -496,15 +496,15 @@ export class IamRoles extends cdk.Construct {
           resourceName: `/aws/lambda/${props.network.clusterId}*:log-stream:*`,
         }),
       ],
-    }))
+    }));
     lambdaACMIamRolePolicy.addStatements(new iam.PolicyStatement({
       actions: [
         'acm:ImportCertificate',
         'acm:ListCertificates',
         'acm:AddTagsToCertificate',
       ],
-      resources: [ '*' ],
-    }))
-    lambdaACMIamRolePolicy.attachToRole(lambdaACMIAMRole)
+      resources: ['*'],
+    }));
+    lambdaACMIamRolePolicy.attachToRole(lambdaACMIAMRole);
   }
 }

@@ -8,7 +8,7 @@ export const SocaInfo = {
     amazonlinux2: 'ec2-user',
     rhel7: 'ec2-user',
   },
-}
+};
 
 export const RegionMap: { [region: string]: { [dist: string]: string } } = {
   // Hong Kong
@@ -23,4 +23,4 @@ export const RegionMap: { [region: string]: { [dist: string]: string } } = {
     centos7: 'ami-045f38c93733dd48d',
     amazonlinux2: 'ami-0c3fd0f5d33134a76',
   },
-}
+};

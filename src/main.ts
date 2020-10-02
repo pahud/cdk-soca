@@ -1,9 +1,9 @@
 
-import * as cdk from '@aws-cdk/core';
 import { Peer, Port, InstanceType, SecurityGroup } from '@aws-cdk/aws-ec2';
-import { Scheduler, BaseOS } from  './scheduler';
+import * as cdk from '@aws-cdk/core';
 import { IamRoles } from './iam-roles';
 import { Network } from './network';
+import { Scheduler, BaseOS } from './scheduler';
 import { EfsStorage } from './storage';
 
 export interface WorkloadProps {
@@ -43,7 +43,7 @@ export interface WorkloadProps {
    * ALL INTERNET access. You probably want to change it with your own IP/subnet (x.x.x.x/32 for your own
    * ip or x.x.x.x/24 for range. Replace x.x.x.x with your own PUBLIC IP. You can get your public IP using
    * tools such as https://ifconfig.co/). Make sure to keep it restrictive!
-   * 
+   *
    * @default - not to add any client IP Cidr address
    */
   readonly clientIpCidr?: string;
@@ -54,13 +54,13 @@ export interface WorkloadProps {
 
   /**
    * Username for your default LDAP user
-   * 
+   *
    * @default - 'ldapUserName'
    */
   readonly ldapUserName?: string;
   /**
    * Password for your default LDAP user
-   * 
+   *
    * @default - 'ldapUserPassword!123'
    */
   readonly ldapUserPassword?: string;
@@ -72,8 +72,8 @@ export class Workload extends cdk.Construct {
     super(scope, id);
     const stack = cdk.Stack.of(this);
 
-    const s3InstallBucket = props.s3InstallBucket ?? 'solutions-reference'
-    const s3InstallFolder = props.s3InstallFolder ?? 'scale-out-computing-on-aws/v2.5.0'
+    const s3InstallBucket = props.s3InstallBucket ?? 'solutions-reference';
+    const s3InstallFolder = props.s3InstallFolder ?? 'scale-out-computing-on-aws/v2.5.0';
 
     // network construct
     const network = new Network(stack, 'SocaNetwork');
@@ -88,14 +88,14 @@ export class Workload extends cdk.Construct {
     });
 
     // compute node security group
-    const computeNodeSecurityGroup = new SecurityGroup(this,'ComputeNodeSecurityGroup', {
+    const computeNodeSecurityGroup = new SecurityGroup(this, 'ComputeNodeSecurityGroup', {
       vpc: network.vpc,
     });
 
     /**
      * Allow all traffic internally
      */
-    computeNodeSecurityGroup.connections.allowInternally(Port.allTraffic())
+    computeNodeSecurityGroup.connections.allowInternally(Port.allTraffic());
 
     const schedulerSecurityGroup = new SecurityGroup(this, 'SchedulerSecurityGroup', {
       vpc: network.vpc,
@@ -105,7 +105,7 @@ export class Workload extends cdk.Construct {
      * SchedulerInboundRule
      * Allow all traffic from computeNodeSecurityGroup to schedulerSecurityGroup
      */
-    schedulerSecurityGroup.connections.allowFrom(computeNodeSecurityGroup, Port.allTraffic())
+    schedulerSecurityGroup.connections.allowFrom(computeNodeSecurityGroup, Port.allTraffic());
 
     /**
      * SchedulerInboundRuleAllowClientIP
@@ -115,28 +115,28 @@ export class Workload extends cdk.Construct {
      * 2. Allow HTTP traffic from client IP to ELB
      * 3. Allow HTTPS traffic from client IP to ELB
      */
-    if(props.clientIpCidr) {
-      schedulerSecurityGroup.connections.allowFrom(Peer.ipv4(props.clientIpCidr), Port.tcp(22))
-      schedulerSecurityGroup.connections.allowFrom(Peer.ipv4(props.clientIpCidr), Port.tcp(80))
-      schedulerSecurityGroup.connections.allowFrom(Peer.ipv4(props.clientIpCidr), Port.tcp(443))
+    if (props.clientIpCidr) {
+      schedulerSecurityGroup.connections.allowFrom(Peer.ipv4(props.clientIpCidr), Port.tcp(22));
+      schedulerSecurityGroup.connections.allowFrom(Peer.ipv4(props.clientIpCidr), Port.tcp(80));
+      schedulerSecurityGroup.connections.allowFrom(Peer.ipv4(props.clientIpCidr), Port.tcp(443));
     }
 
     /**
      * Allow traffic between Master agent and compute nodes
      */
-    computeNodeSecurityGroup.connections.allowFrom(schedulerSecurityGroup, Port.allTraffic())
+    computeNodeSecurityGroup.connections.allowFrom(schedulerSecurityGroup, Port.allTraffic());
 
     /**
      * Allow ELB healtcheck to communicate with web ui on master host
      */
-    schedulerSecurityGroup.connections.allowInternally(Port.tcp(8443))
+    schedulerSecurityGroup.connections.allowInternally(Port.tcp(8443));
 
     const storage = new EfsStorage(stack, 'EfsStorage', {
       clusterId: network.clusterId,
       vpc: network.vpc,
       schedulerSecurityGroup,
       computeNodeSecurityGroup,
-    })
+    });
 
     new Scheduler(stack, 'Scheduler', {
       s3InstallBucket,
@@ -147,6 +147,6 @@ export class Workload extends cdk.Construct {
       instanceType: new InstanceType('m5.large'),
       ldapUserName: props.ldapUserName ?? 'ldapUserName',
       ldapUserPassword: props.ldapUserPassword ?? 'ldapUserPassword!123',
-    })
+    });
   }
 }

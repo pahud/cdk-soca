@@ -1,7 +1,7 @@
 
-import * as cdk from '@aws-cdk/core';
 import * as ec2 from '@aws-cdk/aws-ec2';
 import * as iam from '@aws-cdk/aws-iam';
+import * as cdk from '@aws-cdk/core';
 import { RegionMap, SocaInfo } from './info';
 import { Network } from './network';
 import { EfsStorage } from './storage';
@@ -29,11 +29,11 @@ export class Scheduler extends cdk.Construct {
   constructor(scope: cdk.Construct, id: string, props: SchedulerProps) {
     super(scope, id);
 
-    const urlsuffix = cdk.Stack.of(this).urlSuffix
-    const stack = cdk.Stack.of(this)
-    const region = cdk.Stack.of(this).region
-    const s3InstallBucket = props.s3InstallBucket
-    const s3InstallFolder = props.s3InstallFolder
+    const urlsuffix = cdk.Stack.of(this).urlSuffix;
+    const stack = cdk.Stack.of(this);
+    const region = cdk.Stack.of(this).region;
+    const s3InstallBucket = props.s3InstallBucket;
+    const s3InstallFolder = props.s3InstallFolder;
     const baseOs = props.baseOs ? props.baseOs.toString() : BaseOS.AMZN2.toString();
     const clusterId = props.network.clusterId;
     const socaVersion = SocaInfo.Data.Version;
@@ -112,7 +112,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/config.cfg /root/
 $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/requirements.txt /root/
 $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root/
 /bin/bash /root/Scheduler.sh ${props.storage.efsDataDns} ${props.storage.efsAppsDns} >> /root/Scheduler.sh.log 2>&1
-`)
+`);
 
     const scheduler = new ec2.Instance(this, 'Scheduler', {
       vpc: props.network.vpc,
@@ -120,9 +120,9 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
       machineImage: socaInstallAmi,
       userData,
       securityGroup: props.schedulerSecurityGroup,
-    })
+    });
 
-    scheduler.role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'))
+    scheduler.role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'));
     scheduler.addToRolePolicy(new iam.PolicyStatement({
       actions: [
         'pricing:GetProducts',
@@ -154,7 +154,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
         'savingsplans:DescribeSavingsPlans',
         'servicequotas:ListServiceQuotas',
       ],
-      resources: [ '*' ],
+      resources: ['*'],
     }));
 
     scheduler.addToRolePolicy(new iam.PolicyStatement({
@@ -167,7 +167,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
         'ec2:CreateLaunchTemplate',
         'fsx:CreateDataRepositoryTask',
       ],
-      resources: [ '*' ],
+      resources: ['*'],
       conditions: {
         StringLikeIfExists: {
           'autoscaling:LaunchConfigurationName': props.network.clusterId,
@@ -179,7 +179,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
       actions: [
         'ec2:CreateTags',
       ],
-      resources: [ 
+      resources: [
         stack.formatArn({ service: 'ec2', resource: 'volume' }),
         stack.formatArn({ service: 'ec2', resource: 'network-interface' }),
         stack.formatArn({ service: 'ec2', resource: 'instance' }),
@@ -192,7 +192,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
         'cloudformation:DeleteStack',
         'cloudformation:DescribeStacks',
       ],
-      resources: [ '*' ],
+      resources: ['*'],
       conditions: {
         'ForAllValues:StringEquals': {
           'cloudformation:TemplateURL': `https://s3.${urlsuffix}/${s3InstallBucket}/${s3InstallFolder}/templates/ComputeNode.template`,
@@ -222,10 +222,10 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
       actions: [
         'lambda:InvokeFunction',
       ],
-      resources: [ 
-        stack.formatArn({ 
-          service: 'lambda', 
-          resource: 'function', 
+      resources: [
+        stack.formatArn({
+          service: 'lambda',
+          resource: 'function',
           resourceName: `${props.network.clusterId}-Metrics`,
         }),
       ],
@@ -308,7 +308,7 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
         'ec2:ModifySpotFleetRequest',
         'ec2:CancelSpotFleetRequests',
       ],
-      resources: [ '*' ],
+      resources: ['*'],
       conditions: {
         'ForAllValues:ArnEqualsIfExists': {
           'ec2:Vpc': stack.formatArn({
@@ -347,8 +347,8 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
     const eip = new ec2.CfnEIP(this, 'EIPScheduler', {
       instanceId: scheduler.instanceId,
       domain: props.network.vpc.vpcId,
-    })
+    });
 
-    new cdk.CfnOutput(this, 'SchedulerEIP', { value: eip.ref })
+    new cdk.CfnOutput(this, 'SchedulerEIP', { value: eip.ref });
   }
 }

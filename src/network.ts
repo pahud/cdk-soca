@@ -1,6 +1,6 @@
 
-import * as cdk from '@aws-cdk/core';
 import * as ec2 from '@aws-cdk/aws-ec2';
+import * as cdk from '@aws-cdk/core';
 import { SocaInfo } from './info';
 
 export interface NetworkProps {
@@ -15,9 +15,9 @@ export class Network extends cdk.Construct {
     super(scope, id);
 
     this.vpc = props.vpc ?? new ec2.Vpc(this, 'Vpc', { maxAzs: 3, natGateways: 1 });
-    this.clusterId = props.clusterId ?? `${SocaInfo.Data.ClusterIdPrefix}-${cdk.Stack.of(this).stackName}`
+    this.clusterId = props.clusterId ?? `${SocaInfo.Data.ClusterIdPrefix}-${cdk.Stack.of(this).stackName}`;
 
-    new cdk.CfnOutput(this, 'ClusterID', { value: this.clusterId })
-    new cdk.CfnOutput(this, 'VpcID', { value: this.vpc.vpcId })
+    new cdk.CfnOutput(this, 'ClusterID', { value: this.clusterId });
+    new cdk.CfnOutput(this, 'VpcID', { value: this.vpc.vpcId });
   }
 }

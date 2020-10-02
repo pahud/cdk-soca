@@ -1,7 +1,7 @@
-import * as soca from './'
 import { App, Stack } from '@aws-cdk/core';
+import * as soca from './';
 
-const AWS_DEFAULT_REGION = 'ap-northeast-1'
+const AWS_DEFAULT_REGION = 'ap-northeast-1';
 
 export class IntegTesting {
   readonly stack: Stack[];
@@ -18,7 +18,7 @@ export class IntegTesting {
 
     new soca.Workload(stack, 'Workload');
 
-    this.stack = [stack]
+    this.stack = [stack];
   };
 }
 
