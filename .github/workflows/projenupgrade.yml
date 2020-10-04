@@ -37,8 +37,8 @@ jobs:
         with:
           node-version: 10.17.0
       - run: npx projen@0.3.84
-      - name: Anti-tamper check
-        run: git diff --exit-code
+#       - name: Anti-tamper check
+#         run: git diff --exit-code
       - name: Yarn upgrade
         run: yarn upgrade
       - name: Projen upgrade
