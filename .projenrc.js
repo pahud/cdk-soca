@@ -6,6 +6,7 @@ const {
 const AWS_CDK_LATEST_RELEASE = '1.63.0';
 const PROJECT_NAME = 'cdk-soca';
 const PROJECT_DESCRIPTION = 'cdk-soca is an AWS CDK construct library that allows you to create the Scale-Out Computing on AWS with AWS CDK in TypeScript or Python';
+const AUTOMATION_TOKEN = 'AUTOMATION_GITHUB_TOKEN';
 
 const project = new AwsCdkConstructLibrary({
   name: PROJECT_NAME,
@@ -15,6 +16,7 @@ const project = new AwsCdkConstructLibrary({
   authorEmail: 'pahudnet@gmail.com',
   stability: 'experimental',
   autoReleaseSchedule: 'never',
+  antitamper: false,
 
   keywords: [
     'cdk',
@@ -75,7 +77,7 @@ workflow.addJobs({
         name: 'Create Pull Request',
         uses: 'peter-evans/create-pull-request@v3',
         with: {
-          'token': '${{ secrets.AUTOMATION_GITHUB_TOKEN }}',
+          'token': '${{ secrets.' + AUTOMATION_TOKEN + '}}',
           'commit-message': 'chore: upgrade projen',
           'branch': 'auto/projen-upgrade',
           'title': 'chore: upgrade projen and yarn',
