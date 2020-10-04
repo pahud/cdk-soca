@@ -30,7 +30,6 @@ jobs:
 #     container:
 #       image: jsii/superchain
   projen-upgrade:
-    needs: [yarn-upgrade]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
