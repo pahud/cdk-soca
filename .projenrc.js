@@ -47,6 +47,7 @@ const project = new AwsCdkConstructLibrary({
   }
 });
 
+// create a custom projen and yarn upgrade workflow
 const workflow = new GithubWorkflow(project, 'ProjenYarnUpgrade');
 
 workflow.on({
@@ -82,6 +83,7 @@ workflow.addJobs({
           'branch': 'auto/projen-upgrade',
           'title': 'chore: upgrade projen and yarn',
           'body': 'This PR upgrades projen and yarn upgrade to the latest version',
+          'labels': 'auto-merge',
         }
       },
     ],
