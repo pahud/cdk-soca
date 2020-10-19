@@ -16,8 +16,7 @@ const project = new AwsCdkConstructLibrary({
   authorEmail: 'pahudnet@gmail.com',
   stability: 'experimental',
   autoReleaseSchedule: 'never',
-  antitamper: false,
-
+  dependabot: false,
   keywords: [
     'cdk',
     'aws',
