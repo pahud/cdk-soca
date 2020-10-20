@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.56 (2020-10-20)
+
+
+### Features
+
+* **dev:** add gitpod support ([24a694d](https://github.com/pahud/cdk-soca/commit/24a694def528279d60ee67b2cf1ba2316c8346d1))
+
 ### 0.1.55 (2020-10-19)
 
 ### 0.1.54 (2020-10-19)
