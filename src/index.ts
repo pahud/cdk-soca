@@ -3,3 +3,4 @@ export * from './main';
 export * from './network';
 export * from './scheduler';
 export * from './storage';
+export * from './analytics';
