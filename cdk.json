@@ -1,0 +1,3 @@
+{
+  "app": "npx node lib/integ.default.js"
+}
