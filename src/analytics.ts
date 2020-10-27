@@ -8,6 +8,7 @@ export interface AnalyticsProps {
   readonly vpc: ec2.IVpc;
   readonly schedulerSecurityGroup: ec2.ISecurityGroup;
   readonly clusterId: string;
+  readonly domainName?: string;
 }
 
 export class Analytics extends cdk.Construct {
@@ -17,7 +18,7 @@ export class Analytics extends cdk.Construct {
         const region = cdk.Stack.of(this).region;
         const account = cdk.Stack.of(this).account;
         // const stack = cdk.Stack.of(this);
-        const esDomainName = props.clusterId;
+        const esDomainName = props.domainName ?? props.clusterId;
 
         // PolicyName: ElasticsearchPermissions
         const elasticsearchPermissionsPolicy = new PolicyStatement({
