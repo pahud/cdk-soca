@@ -35,6 +35,7 @@ const project = new AwsCdkConstructLibrary({
   cdkDependencies: [
     '@aws-cdk/core',
     '@aws-cdk/aws-ec2',
+    '@aws-cdk/aws-elasticsearch',
     '@aws-cdk/aws-efs',
     '@aws-cdk/aws-iam',
     '@aws-cdk/aws-s3',
