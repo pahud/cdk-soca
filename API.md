@@ -4,6 +4,7 @@
 
 Name|Description
 ----|-----------
+[Analytics](#cdk-soca-analytics)|*No description*
 [EfsStorage](#cdk-soca-efsstorage)|*No description*
 [IamRoles](#cdk-soca-iamroles)|Create all required IAM roles.
 [Network](#cdk-soca-network)|*No description*
@@ -15,6 +16,7 @@ Name|Description
 
 Name|Description
 ----|-----------
+[AnalyticsProps](#cdk-soca-analyticsprops)|*No description*
 [EfsStorageProps](#cdk-soca-efsstorageprops)|*No description*
 [IamRolesProps](#cdk-soca-iamrolesprops)|*No description*
 [NetworkProps](#cdk-soca-networkprops)|*No description*
@@ -27,6 +29,33 @@ Name|Description
 Name|Description
 ----|-----------
 [BaseOS](#cdk-soca-baseos)|*No description*
+
+
+
+## class Analytics 🔹 <a id="cdk-soca-analytics"></a>
+
+
+
+__Implements__: [IConstruct](#constructs-iconstruct), [IConstruct](#aws-cdk-core-iconstruct), [IConstruct](#constructs-iconstruct), [IDependable](#aws-cdk-core-idependable)
+__Extends__: [Construct](#aws-cdk-core-construct)
+
+### Initializer
+
+
+
+
+```ts
+new Analytics(scope: Construct, id: string, props: AnalyticsProps)
+```
+
+* **scope** (<code>[Construct](#aws-cdk-core-construct)</code>)  *No description*
+* **id** (<code>string</code>)  *No description*
+* **props** (<code>[AnalyticsProps](#cdk-soca-analyticsprops)</code>)  *No description*
+  * **clusterId** (<code>string</code>)  *No description* 
+  * **schedulerSecurityGroup** (<code>[ISecurityGroup](#aws-cdk-aws-ec2-isecuritygroup)</code>)  *No description* 
+  * **vpc** (<code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code>)  *No description* 
+  * **domainName** (<code>string</code>)  *No description* __*Optional*__
+
 
 
 
@@ -199,6 +228,22 @@ new Workload(scope: Construct, id: string, props?: WorkloadProps)
   * **sshKeyName** (<code>string</code>)  Default SSH pem keys used to SSH into the scheduler. __*Optional*__
   * **vpcCidr** (<code>string</code>)  VPC Cidr for the new VPC. __*Default*__: 10.0.0.0/16
 
+
+
+
+## struct AnalyticsProps 🔹 <a id="cdk-soca-analyticsprops"></a>
+
+
+
+
+
+
+Name | Type | Description 
+-----|------|-------------
+**clusterId**🔹 | <code>string</code> | <span></span>
+**schedulerSecurityGroup**🔹 | <code>[ISecurityGroup](#aws-cdk-aws-ec2-isecuritygroup)</code> | <span></span>
+**vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | <span></span>
+**domainName**?🔹 | <code>string</code> | __*Optional*__
 
 
 
