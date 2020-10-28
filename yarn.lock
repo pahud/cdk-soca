@@ -1657,9 +1657,9 @@ concat-stream@^2.0.0:
     typedarray "^0.0.6"
 
 constructs@^3.0.4:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.2.2.tgz#e1d710baf11aa6c4ef15ddf5bc1ffb551b4308a0"
-  integrity sha512-SRqzNQkfc7qUvcozWuCWB04DSVkGbr9VEfvtNzmuvTZz8kUzbxshgOexMtGSjZd0ZbD14gEEtcTRWtQgQrsvOw==
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/constructs/-/constructs-3.2.3.tgz#eadf4d78e0e5ab2a211fe1dc5206613e77974a11"
+  integrity sha512-3sFPQuMXsBS2OtTgzzIEs3yfaPSRCXPrW9XDljzBWo+Y/fREqxLPz0guUT1TAT1A5T0HeQktGtCXCJwdaFNypg==
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -4885,7 +4885,7 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.3.133:
+projen@^0.3.134:
   version "0.3.134"
   resolved "https://registry.yarnpkg.com/projen/-/projen-0.3.134.tgz#2ae1d1c9428f7a17e3468e08a3935d1548f45b5f"
   integrity sha512-B0044zrsK+HhKPoZmhkOzMMay2/ZpIlqIcri/lqSvVtA6LAcAzxQoegLCcO1evPQZaHvCT0ojg5gMoZ7ILFE9A==
