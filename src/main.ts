@@ -1,6 +1,7 @@
 
 import { Peer, Port, InstanceType, SecurityGroup } from '@aws-cdk/aws-ec2';
 import * as cdk from '@aws-cdk/core';
+import { Analytics } from './analytics';
 import { IamRoles } from './iam-roles';
 import { Network } from './network';
 import { Scheduler, BaseOS } from './scheduler';
@@ -136,6 +137,13 @@ export class Workload extends cdk.Construct {
       vpc: network.vpc,
       schedulerSecurityGroup,
       computeNodeSecurityGroup,
+    });
+
+    // add elasticsearch stack
+    new Analytics(stack, 'Analytics', {
+      vpc: network.vpc,
+      schedulerSecurityGroup: schedulerSecurityGroup,
+      clusterId: network.clusterId,
     });
 
     new Scheduler(stack, 'Scheduler', {

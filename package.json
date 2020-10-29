@@ -55,6 +55,7 @@
   "peerDependencies": {
     "@aws-cdk/aws-ec2": "^1.63.0",
     "@aws-cdk/aws-efs": "^1.63.0",
+    "@aws-cdk/aws-elasticsearch": "^1.63.0",
     "@aws-cdk/aws-iam": "^1.63.0",
     "@aws-cdk/aws-s3": "^1.63.0",
     "@aws-cdk/core": "^1.63.0",
@@ -63,6 +64,7 @@
   "dependencies": {
     "@aws-cdk/aws-ec2": "^1.63.0",
     "@aws-cdk/aws-efs": "^1.63.0",
+    "@aws-cdk/aws-elasticsearch": "^1.63.0",
     "@aws-cdk/aws-iam": "^1.63.0",
     "@aws-cdk/aws-s3": "^1.63.0",
     "@aws-cdk/core": "^1.63.0"
