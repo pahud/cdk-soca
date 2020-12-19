@@ -1,9 +1,6 @@
-const {
-  AwsCdkConstructLibrary,
-  GithubWorkflow,
-} = require('projen');
+const { AwsCdkConstructLibrary } = require('projen');
 
-const AWS_CDK_LATEST_RELEASE = '1.63.0';
+const AWS_CDK_LATEST_RELEASE = '1.77.0';
 const PROJECT_NAME = 'cdk-soca';
 const PROJECT_DESCRIPTION = 'cdk-soca is an AWS CDK construct library that allows you to create the Scale-Out Computing on AWS with AWS CDK in TypeScript or Python';
 const AUTOMATION_TOKEN = 'AUTOMATION_GITHUB_TOKEN';
@@ -48,7 +45,7 @@ const project = new AwsCdkConstructLibrary({
 });
 
 // create a custom projen and yarn upgrade workflow
-const workflow = new GithubWorkflow(project, 'ProjenYarnUpgrade');
+workflow = project.github.addWorkflow('ProjenYarnUpgrade');
 
 workflow.on({
   schedule: [{
