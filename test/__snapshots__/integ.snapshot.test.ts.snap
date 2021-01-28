@@ -214,9 +214,6 @@ Object {
           "Enabled": true,
         },
         "LogPublishingOptions": Object {
-          "AUDIT_LOGS": Object {
-            "Enabled": false,
-          },
           "ES_APPLICATION_LOGS": Object {
             "CloudWatchLogsLogGroupArn": Object {
               "Fn::GetAtt": Array [
