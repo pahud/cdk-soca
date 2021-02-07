@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.121](https://github.com/pahud/cdk-soca/compare/v0.1.120...v0.1.121) (2021-02-07)
+
+
+### Bug Fixes
+
+* defaultReleaseBranch ([d9d2431](https://github.com/pahud/cdk-soca/commit/d9d2431e134f039686de0055995a2b23ec8a2b26))
+
 ### [0.1.120](https://github.com/pahud/cdk-soca/compare/v0.1.119...v0.1.120) (2021-02-07)
 
 ### [0.1.119](https://github.com/pahud/cdk-soca/compare/v0.1.118...v0.1.119) (2021-02-03)
