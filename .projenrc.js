@@ -14,6 +14,7 @@ const project = new AwsCdkConstructLibrary({
   stability: 'experimental',
   autoReleaseSchedule: 'never',
   dependabot: false,
+  defaultReleaseBranch: 'master',
   keywords: [
     'cdk',
     'aws',
