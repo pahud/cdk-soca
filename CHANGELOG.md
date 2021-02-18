@@ -8,11 +8,13 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * scope down the ES security group and subnets ([a97ed96](https://github.com/pahud/cdk-soca/commit/a97ed96cb9e8878ac0c61cd121c5275d00ead2e9))
+### [0.1.136](https://github.com/pahud/cdk-soca/compare/v0.1.135...v0.1.136) (2021-02-18)
 
 
 ### Bug Fixes
 
 * unable to create ES domain ([8c5fbc2](https://github.com/pahud/cdk-soca/commit/8c5fbc227a50f848c830e163d018de877774c4cd))
+* unable to create ES domain ([#163](https://github.com/pahud/cdk-soca/issues/163)) ([15fa9fd](https://github.com/pahud/cdk-soca/commit/15fa9fd51cb50411fd8eb98b1da3895cbbb5001e)), closes [#162](https://github.com/pahud/cdk-soca/issues/162) [#161](https://github.com/pahud/cdk-soca/issues/161)
 
 ### [0.1.135](https://github.com/pahud/cdk-soca/compare/v0.1.134...v0.1.135) (2021-02-18)
 
