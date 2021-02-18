@@ -2,7 +2,7 @@
 import * as ec2 from '@aws-cdk/aws-ec2';
 import * as iam from '@aws-cdk/aws-iam';
 import * as cdk from '@aws-cdk/core';
-import { RegionMap, SocaInfo } from './info';
+import { SocaInfo } from './info';
 import { Network } from './network';
 import { EfsStorage } from './storage';
 
@@ -39,10 +39,11 @@ export class Scheduler extends cdk.Construct {
     const socaVersion = SocaInfo.Data.Version;
     const ldapUserName = props.ldapUserName;
     const ldapUserPassword = props.ldapUserPassword;
+    // amazon linux 2 AMI if customAmi is undefined
     const socaInstallAmi = props.customAmi ?ec2.MachineImage.genericLinux({
       [region]: props.customAmi,
-    }) : ec2.MachineImage.genericLinux({
-      [region]: RegionMap[region][baseOs],
+    }) : new ec2.AmazonLinuxImage({
+      generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2
     });
     const socaInstallAmiId = socaInstallAmi.getImage(this).imageId;
     // const bootscript: string = fs.readFileSync(path.join(__dirname, '../assets/user-data'), 'utf-8');

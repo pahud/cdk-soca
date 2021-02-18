@@ -26,7 +26,7 @@ export class Analytics extends cdk.Construct {
         'es:ESHttp*',
       ],
       principals: [
-        new iam.AnyPrincipal,
+        new iam.AccountRootPrincipal(),
       ],
       resources: [`arn:aws:es:${region}:${account}:domain/${esDomainName}/*`],
     });
