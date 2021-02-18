@@ -91,6 +91,10 @@ Object {
       "Description": "S3 key for asset version \\"4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956\\"",
       "Type": "String",
     },
+    "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": Object {
+      "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2",
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+    },
   },
   "Resources": Object {
     "AWS679f53fac002430cb0da5b7982bd22872D164C4C": Object {
@@ -271,7 +275,15 @@ Object {
               "Fn::Join": Array [
                 "",
                 Array [
-                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Effect\\":\\"Allow\\",\\"Principal\\":\\"*\\",\\"Resource\\":\\"arn:aws:es:ap-northeast-1:",
+                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"AWS\\":\\"arn:",
+                  Object {
+                    "Ref": "AWS::Partition",
+                  },
+                  ":iam::",
+                  Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                  ":root\\"},\\"Resource\\":\\"arn:aws:es:ap-northeast-1:",
                   Object {
                     "Ref": "AWS::AccountId",
                   },
@@ -313,7 +325,15 @@ Object {
               "Fn::Join": Array [
                 "",
                 Array [
-                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Effect\\":\\"Allow\\",\\"Principal\\":\\"*\\",\\"Resource\\":\\"arn:aws:es:ap-northeast-1:",
+                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"AWS\\":\\"arn:",
+                  Object {
+                    "Ref": "AWS::Partition",
+                  },
+                  ":iam::",
+                  Object {
+                    "Ref": "AWS::AccountId",
+                  },
+                  ":root\\"},\\"Resource\\":\\"arn:aws:es:ap-northeast-1:",
                   Object {
                     "Ref": "AWS::AccountId",
                   },
@@ -1795,7 +1815,9 @@ Object {
         "IamInstanceProfile": Object {
           "Ref": "SchedulerInstanceProfileE3AED890",
         },
-        "ImageId": "ami-0c3fd0f5d33134a76",
+        "ImageId": Object {
+          "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
+        },
         "InstanceType": "m5.large",
         "SecurityGroupIds": Array [
           Object {
@@ -1864,7 +1886,11 @@ echo export \\"AWS_DEFAULT_REGION=ap-northeast-1 \\" >> /etc/environment
 echo export \\"SOCA_INSTALL_BUCKET=solutions-reference\\" >> /etc/environment
 echo export \\"SOCA_INSTALL_BUCKET_FOLDER=scale-out-computing-on-aws/v2.5.0\\" >> /etc/environment
 echo export \\"SOCA_VERSION=2.5.0\\" >> /etc/environment
-echo export \\"SOCA_INSTALL_AMI=ami-0c3fd0f5d33134a76\\" >> /etc/environment
+echo export \\"SOCA_INSTALL_AMI=",
+                Object {
+                  "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
+                },
+                "\\" >> /etc/environment
 source /etc/environment
 
 # Tag EBS disks manually as CFN ASG does not support it

@@ -43,7 +43,7 @@ export class Scheduler extends cdk.Construct {
     const socaInstallAmi = props.customAmi ?ec2.MachineImage.genericLinux({
       [region]: props.customAmi,
     }) : new ec2.AmazonLinuxImage({
-      generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2
+      generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
     });
     const socaInstallAmiId = socaInstallAmi.getImage(this).imageId;
     // const bootscript: string = fs.readFileSync(path.join(__dirname, '../assets/user-data'), 'utf-8');
