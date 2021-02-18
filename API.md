@@ -58,6 +58,14 @@ new Analytics(scope: Construct, id: string, props: AnalyticsProps)
 
 
 
+### Properties
+
+
+Name | Type | Description 
+-----|------|-------------
+**vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | <span></span>
+
+
 
 ## class EfsStorage 🔹 <a id="cdk-soca-efsstorage"></a>
 
