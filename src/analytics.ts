@@ -89,6 +89,4 @@ export class Analytics extends cdk.Construct {
     sg.connections.allowToAnyIpv4(ec2.Port.allIcmp());
     return sg;
   }
-
-
 }
