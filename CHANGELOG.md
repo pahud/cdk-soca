@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/pahud/cdk-soca/compare/v0.1.135...v0.2.0) (2021-02-18)
+
+
+### Features
+
+* scope down the ES security group and subnets ([a97ed96](https://github.com/pahud/cdk-soca/commit/a97ed96cb9e8878ac0c61cd121c5275d00ead2e9))
+
+
+### Bug Fixes
+
+* unable to create ES domain ([8c5fbc2](https://github.com/pahud/cdk-soca/commit/8c5fbc227a50f848c830e163d018de877774c4cd))
+
 ### [0.1.135](https://github.com/pahud/cdk-soca/compare/v0.1.134...v0.1.135) (2021-02-18)
 
 ### [0.1.134](https://github.com/pahud/cdk-soca/compare/v0.1.133...v0.1.134) (2021-02-18)
