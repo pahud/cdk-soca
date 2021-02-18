@@ -189,8 +189,24 @@ Object {
         "SecurityGroupEgress": Array [
           Object {
             "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1",
+            "Description": "from 0.0.0.0/0:ALL PORTS",
+            "FromPort": 0,
+            "IpProtocol": "tcp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:UDP ALL PORTS",
+            "FromPort": 0,
+            "IpProtocol": "udp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:ALL ICMP",
+            "FromPort": -1,
+            "IpProtocol": "icmp",
+            "ToPort": -1,
           },
         ],
         "VpcId": Object {
@@ -2929,8 +2945,24 @@ $AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/Sc
         "SecurityGroupEgress": Array [
           Object {
             "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1",
+            "Description": "from 0.0.0.0/0:ALL PORTS",
+            "FromPort": 0,
+            "IpProtocol": "tcp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:UDP ALL PORTS",
+            "FromPort": 0,
+            "IpProtocol": "udp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:ALL ICMP",
+            "FromPort": -1,
+            "IpProtocol": "icmp",
+            "ToPort": -1,
           },
         ],
         "VpcId": Object {
@@ -2939,43 +2971,236 @@ $AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/Sc
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLTRAFFIC3E554A86": Object {
+    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLICMP064DC02F": Object {
       "Properties": Object {
-        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL TRAFFIC",
+        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL ICMP",
+        "FromPort": -1,
         "GroupId": Object {
           "Fn::GetAtt": Array [
             "WorkloadComputeNodeSecurityGroupC11D647D",
             "GroupId",
           ],
         },
-        "IpProtocol": "-1",
+        "IpProtocol": "icmp",
         "SourceSecurityGroupId": Object {
           "Fn::GetAtt": Array [
             "WorkloadComputeNodeSecurityGroupC11D647D",
             "GroupId",
           ],
         },
+        "ToPort": -1,
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
     },
-    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadSchedulerSecurityGroup7E5A7062ALLTRAFFIC139E7349": Object {
+    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLPORTS68F3EC16": Object {
       "Properties": Object {
-        "Description": "from socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:ALL TRAFFIC",
+        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL PORTS",
+        "FromPort": 0,
         "GroupId": Object {
           "Fn::GetAtt": Array [
             "WorkloadComputeNodeSecurityGroupC11D647D",
             "GroupId",
           ],
         },
-        "IpProtocol": "-1",
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2UDPALLPORTSC491A6EB": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:UDP ALL PORTS",
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "udp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadSchedulerSecurityGroup7E5A7062ALLPORTS145EAF9C": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:ALL PORTS",
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
         "SourceSecurityGroupId": Object {
           "Fn::GetAtt": Array [
             "WorkloadSchedulerSecurityGroup35115701",
             "GroupId",
           ],
         },
+        "ToPort": 65535,
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadComputeNodeSecurityGroupfromsocatestingstackWorkloadSchedulerSecurityGroup7E5A7062UDPALLPORTSD00A9DDE": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:UDP ALL PORTS",
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "udp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadComputeNodeSecurityGrouptosocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLICMP34470054": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL ICMP",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "FromPort": -1,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "icmp",
+        "ToPort": -1,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "WorkloadComputeNodeSecurityGrouptosocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLPORTS9FB65BE9": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL PORTS",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "WorkloadComputeNodeSecurityGrouptosocatestingstackWorkloadComputeNodeSecurityGroup95042CF2UDPALLPORTSAB4A9A40": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:UDP ALL PORTS",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "udp",
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "WorkloadComputeNodeSecurityGrouptosocatestingstackWorkloadSchedulerSecurityGroup7E5A7062ALLICMPA7A6AD9C": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:ALL ICMP",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "FromPort": -1,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "icmp",
+        "ToPort": -1,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "WorkloadComputeNodeSecurityGrouptosocatestingstackWorkloadSchedulerSecurityGroup7E5A7062ALLPORTSC3C7E02D": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:ALL PORTS",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "WorkloadComputeNodeSecurityGrouptosocatestingstackWorkloadSchedulerSecurityGroup7E5A7062UDPALLPORTSAAD25A76": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:UDP ALL PORTS",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "udp",
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
     },
     "WorkloadSchedulerSecurityGroup35115701": Object {
       "Properties": Object {
@@ -2983,8 +3208,24 @@ $AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/Sc
         "SecurityGroupEgress": Array [
           Object {
             "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1",
+            "Description": "from 0.0.0.0/0:ALL PORTS",
+            "FromPort": 0,
+            "IpProtocol": "tcp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:UDP ALL PORTS",
+            "FromPort": 0,
+            "IpProtocol": "udp",
+            "ToPort": 65535,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:ALL ICMP",
+            "FromPort": -1,
+            "IpProtocol": "icmp",
+            "ToPort": -1,
           },
         ],
         "VpcId": Object {
@@ -2993,22 +3234,66 @@ $AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/Sc
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "WorkloadSchedulerSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLTRAFFIC0582CD26": Object {
+    "WorkloadSchedulerSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLICMPB9F659FB": Object {
       "Properties": Object {
-        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL TRAFFIC",
+        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL ICMP",
+        "FromPort": -1,
         "GroupId": Object {
           "Fn::GetAtt": Array [
             "WorkloadSchedulerSecurityGroup35115701",
             "GroupId",
           ],
         },
-        "IpProtocol": "-1",
+        "IpProtocol": "icmp",
         "SourceSecurityGroupId": Object {
           "Fn::GetAtt": Array [
             "WorkloadComputeNodeSecurityGroupC11D647D",
             "GroupId",
           ],
         },
+        "ToPort": -1,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadSchedulerSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLPORTSD6A26B7A": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL PORTS",
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadSchedulerSecurityGroupfromsocatestingstackWorkloadComputeNodeSecurityGroup95042CF2UDPALLPORTS3387B325": Object {
+      "Properties": Object {
+        "Description": "from socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:UDP ALL PORTS",
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "udp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "ToPort": 65535,
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
     },
@@ -3032,6 +3317,69 @@ $AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/Sc
         "ToPort": 8443,
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "WorkloadSchedulerSecurityGrouptosocatestingstackWorkloadComputeNodeSecurityGroup95042CF2ALLPORTS9DD0F027": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:ALL PORTS",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "WorkloadSchedulerSecurityGrouptosocatestingstackWorkloadComputeNodeSecurityGroup95042CF2UDPALLPORTS8D84C0AB": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadComputeNodeSecurityGroup95042CF2:UDP ALL PORTS",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadComputeNodeSecurityGroupC11D647D",
+            "GroupId",
+          ],
+        },
+        "FromPort": 0,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "udp",
+        "ToPort": 65535,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "WorkloadSchedulerSecurityGrouptosocatestingstackWorkloadSchedulerSecurityGroup7E5A70628443BFE1D4D8": Object {
+      "Properties": Object {
+        "Description": "to socatestingstackWorkloadSchedulerSecurityGroup7E5A7062:8443",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "FromPort": 8443,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "WorkloadSchedulerSecurityGroup35115701",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 8443,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
     },
   },
 }
