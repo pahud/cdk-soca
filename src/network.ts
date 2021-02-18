@@ -11,6 +11,7 @@ export interface NetworkProps {
 export class Network extends cdk.Construct {
   readonly vpc: ec2.IVpc;
   readonly clusterId: string;
+  readonly natEip?: string;
   constructor(scope: cdk.Construct, id: string, props: NetworkProps = {}) {
     super(scope, id);
 

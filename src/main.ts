@@ -157,14 +157,7 @@ export class Workload extends cdk.Construct {
       computeNodeSecurityGroup,
     });
 
-    // add elasticsearch stack
-    new Analytics(stack, 'Analytics', {
-      vpc: network.vpc,
-      schedulerSecurityGroup: schedulerSecurityGroup,
-      clusterId: network.clusterId,
-    });
-
-    new Scheduler(stack, 'Scheduler', {
+    const scheduler = new Scheduler(stack, 'Scheduler', {
       s3InstallBucket,
       s3InstallFolder,
       schedulerSecurityGroup,
@@ -174,5 +167,16 @@ export class Workload extends cdk.Construct {
       ldapUserName: props.ldapUserName ?? 'ldapUserName',
       ldapUserPassword: props.ldapUserPassword ?? 'ldapUserPassword!123',
     });
+
+    // add elasticsearch stack
+    new Analytics(stack, 'Analytics', {
+      vpc: network.vpc,
+      clientIpCidr: props.clientIpCidr,
+      sechedulerPublicIp: scheduler.publicIp,
+      schedulerSecurityGroup: schedulerSecurityGroup,
+      clusterId: network.clusterId,
+    });
+
+
   }
 }

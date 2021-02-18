@@ -26,6 +26,7 @@ export interface SchedulerProps {
 }
 
 export class Scheduler extends cdk.Construct {
+  readonly publicIp: string;
   constructor(scope: cdk.Construct, id: string, props: SchedulerProps) {
     super(scope, id);
 
@@ -347,8 +348,10 @@ $AWS s3 cp s3://${s3InstallBucket}/${s3InstallFolder}/scripts/Scheduler.sh /root
 
     const eip = new ec2.CfnEIP(this, 'EIPScheduler', {
       instanceId: scheduler.instanceId,
-      domain: props.network.vpc.vpcId,
+      domain: 'vpc',
     });
+
+    this.publicIp = eip.ref;
 
     new cdk.CfnOutput(this, 'SchedulerEIP', { value: eip.ref });
   }

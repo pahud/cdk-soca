@@ -183,38 +183,6 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "AnalyticsESSecurityGroup2371D9FE": Object {
-      "Properties": Object {
-        "GroupDescription": "Default security group for ES",
-        "SecurityGroupEgress": Array [
-          Object {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "from 0.0.0.0/0:ALL PORTS",
-            "FromPort": 0,
-            "IpProtocol": "tcp",
-            "ToPort": 65535,
-          },
-          Object {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "from 0.0.0.0/0:UDP ALL PORTS",
-            "FromPort": 0,
-            "IpProtocol": "udp",
-            "ToPort": 65535,
-          },
-          Object {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "from 0.0.0.0/0:ALL ICMP",
-            "FromPort": -1,
-            "IpProtocol": "icmp",
-            "ToPort": -1,
-          },
-        ],
-        "VpcId": Object {
-          "Ref": "SocaNetworkVpcEDB8981E",
-        },
-      },
-      "Type": "AWS::EC2::SecurityGroup",
-    },
     "AnalyticsElasticsearchDomain1703D8ED": Object {
       "DependsOn": Array [
         "AnalyticsElasticsearchDomainESLogGroupPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6fCustomResourcePolicyECF8AEC3",
@@ -235,9 +203,7 @@ Object {
           "VolumeType": "gp2",
         },
         "ElasticsearchClusterConfig": Object {
-          "DedicatedMasterCount": 3,
-          "DedicatedMasterEnabled": true,
-          "DedicatedMasterType": "m5.large.elasticsearch",
+          "DedicatedMasterEnabled": false,
           "InstanceCount": 2,
           "InstanceType": "m5.large.elasticsearch",
           "ZoneAwarenessConfig": Object {
@@ -281,24 +247,6 @@ Object {
         "NodeToNodeEncryptionOptions": Object {
           "Enabled": true,
         },
-        "VPCOptions": Object {
-          "SecurityGroupIds": Array [
-            Object {
-              "Fn::GetAtt": Array [
-                "AnalyticsESSecurityGroup2371D9FE",
-                "GroupId",
-              ],
-            },
-          ],
-          "SubnetIds": Array [
-            Object {
-              "Ref": "SocaNetworkVpcPrivateSubnet1Subnet131C8B33",
-            },
-            Object {
-              "Ref": "SocaNetworkVpcPrivateSubnet2Subnet1DBE9897",
-            },
-          ],
-        },
       },
       "Type": "AWS::Elasticsearch::Domain",
     },
@@ -325,7 +273,11 @@ Object {
               "Fn::Join": Array [
                 "",
                 Array [
-                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"AWS\\":\\"arn:",
+                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Condition\\":{\\"IpAddress\\":{\\"aws:SourceIp\\":[\\"",
+                  Object {
+                    "Ref": "SchedulerEIPScheduler20314FED",
+                  },
+                  "/32\\"]}},\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"AWS\\":\\"arn:",
                   Object {
                     "Ref": "AWS::Partition",
                   },
@@ -375,7 +327,11 @@ Object {
               "Fn::Join": Array [
                 "",
                 Array [
-                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"AWS\\":\\"arn:",
+                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Condition\\":{\\"IpAddress\\":{\\"aws:SourceIp\\":[\\"",
+                  Object {
+                    "Ref": "SchedulerEIPScheduler20314FED",
+                  },
+                  "/32\\"]}},\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"AWS\\":\\"arn:",
                   Object {
                     "Ref": "AWS::Partition",
                   },
@@ -1988,9 +1944,7 @@ $AWS s3 cp s3://solutions-reference/scale-out-computing-on-aws/v2.5.0/scripts/Sc
     },
     "SchedulerEIPScheduler20314FED": Object {
       "Properties": Object {
-        "Domain": Object {
-          "Ref": "SocaNetworkVpcEDB8981E",
-        },
+        "Domain": "vpc",
         "InstanceId": Object {
           "Ref": "Scheduler55EE85DC",
         },
