@@ -66,16 +66,23 @@
       "type": "build"
     },
     {
+<<<<<<< HEAD
       "name": "jsii-release",
       "type": "build"
     },
     {
+=======
+>>>>>>> 0ce4f83d24a39350e88c6106908d873108a895d2
       "name": "json-schema",
       "type": "build"
     },
     {
       "name": "projen",
+<<<<<<< HEAD
       "version": "^0.15.13",
+=======
+      "version": "^0.16.5",
+>>>>>>> 0ce4f83d24a39350e88c6106908d873108a895d2
       "type": "build"
     },
     {

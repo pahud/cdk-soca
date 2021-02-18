@@ -3,8 +3,8 @@ github:
     pullRequestsFromForks: true
     addComment: true
     
-image:
-  file: .gitpod.Dockerfile
+image: public.ecr.aws/pahudnet/vscode:latest
+#   file: .gitpod.Dockerfile
 
 vscode:
   extensions:
