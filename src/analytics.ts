@@ -11,6 +11,7 @@ export interface AnalyticsProps {
 }
 
 export class Analytics extends cdk.Construct {
+  readonly vpc: ec2.IVpc;
   constructor(scope: cdk.Construct, id: string, props: AnalyticsProps) {
     super(scope, id);
 
@@ -18,6 +19,8 @@ export class Analytics extends cdk.Construct {
     const account = cdk.Stack.of(this).account;
     // const stack = cdk.Stack.of(this);
     const esDomainName = props.domainName ?? props.clusterId;
+
+    this.vpc = props.vpc;
 
     // PolicyName: ElasticsearchPermissions
     const elasticsearchPermissionsPolicy = new iam.PolicyStatement({
@@ -34,6 +37,12 @@ export class Analytics extends cdk.Construct {
     //Create Elasticsearch service
     const esDomain = new es.Domain(this, 'ElasticsearchDomain', {
       version: es.ElasticsearchVersion.V7_4,
+      vpcOptions: {
+        subnets: this.vpc.privateSubnets,
+        securityGroups: [
+          this._createSecurityGroup('ESSecurityGroup', 'Default security group for ES'),
+        ],
+      },
       domainName: esDomainName,
       nodeToNodeEncryption: true,
       encryptionAtRest: {
@@ -68,6 +77,12 @@ export class Analytics extends cdk.Construct {
     new cdk.CfnOutput(this, 'ESDomainArn:', { value: esDomain.domainArn });
     new cdk.CfnOutput(this, 'ESDomainEndpoint:', { value: esDomain.domainEndpoint });
 
+  }
+  private _createSecurityGroup(id: string, description?: string): ec2.ISecurityGroup {
+    return new ec2.SecurityGroup(this, id, {
+      vpc: this.vpc,
+      description,
+    });
   }
 
 

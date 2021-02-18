@@ -183,6 +183,22 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
+    "AnalyticsESSecurityGroup2371D9FE": Object {
+      "Properties": Object {
+        "GroupDescription": "Default security group for ES",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "SocaNetworkVpcEDB8981E",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
     "AnalyticsElasticsearchDomain1703D8ED": Object {
       "DependsOn": Array [
         "AnalyticsElasticsearchDomainESLogGroupPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6fCustomResourcePolicyECF8AEC3",
@@ -248,6 +264,24 @@ Object {
         },
         "NodeToNodeEncryptionOptions": Object {
           "Enabled": true,
+        },
+        "VPCOptions": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "AnalyticsESSecurityGroup2371D9FE",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            Object {
+              "Ref": "SocaNetworkVpcPrivateSubnet1Subnet131C8B33",
+            },
+            Object {
+              "Ref": "SocaNetworkVpcPrivateSubnet2Subnet1DBE9897",
+            },
+          ],
         },
       },
       "Type": "AWS::Elasticsearch::Domain",
