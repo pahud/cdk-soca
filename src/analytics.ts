@@ -8,6 +8,9 @@ export interface AnalyticsProps {
   readonly schedulerSecurityGroup: ec2.ISecurityGroup;
   readonly clusterId: string;
   readonly domainName?: string;
+  readonly clientIpCidr?: string;
+  readonly sechedulerPublicIp: string;
+  // readonly eipNat?: string;
 }
 
 export class Analytics extends cdk.Construct {
@@ -17,32 +20,30 @@ export class Analytics extends cdk.Construct {
 
     const region = cdk.Stack.of(this).region;
     const account = cdk.Stack.of(this).account;
-    // const stack = cdk.Stack.of(this);
     const esDomainName = props.domainName ?? props.clusterId;
 
     this.vpc = props.vpc;
 
     // PolicyName: ElasticsearchPermissions
+    const trustedSourceIpCidr = [
+      `${props.sechedulerPublicIp}/32`,
+    ];
+    if (props.clientIpCidr) trustedSourceIpCidr.push(props.clientIpCidr);
     const elasticsearchPermissionsPolicy = new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
       actions: [
         'es:ESHttp*',
       ],
-      principals: [
-        new iam.AccountRootPrincipal(),
-      ],
+      principals: [new iam.AccountRootPrincipal()],
+      conditions: {
+        IpAddress: { 'aws:SourceIp': trustedSourceIpCidr },
+      },
       resources: [`arn:aws:es:${region}:${account}:domain/${esDomainName}/*`],
     });
 
     //Create Elasticsearch service
     const esDomain = new es.Domain(this, 'ElasticsearchDomain', {
       version: es.ElasticsearchVersion.V7_4,
-      vpcOptions: {
-        subnets: this.vpc.privateSubnets,
-        securityGroups: [
-          this._createSecurityGroup('ESSecurityGroup', 'Default security group for ES'),
-        ],
-      },
       domainName: esDomainName,
       nodeToNodeEncryption: true,
       encryptionAtRest: {
@@ -54,7 +55,6 @@ export class Analytics extends cdk.Construct {
         enabled: true,
       },
       capacity: {
-        masterNodes: 3,
         masterNodeInstanceType: 'm5.large.elasticsearch',
         dataNodes: 2,
         dataNodeInstanceType: 'm5.large.elasticsearch',
@@ -76,14 +76,5 @@ export class Analytics extends cdk.Construct {
 
     new cdk.CfnOutput(this, 'ESDomainArn:', { value: esDomain.domainArn });
     new cdk.CfnOutput(this, 'ESDomainEndpoint:', { value: esDomain.domainEndpoint });
-
   }
-  private _createSecurityGroup(id: string, description?: string): ec2.ISecurityGroup {
-    return new ec2.SecurityGroup(this, id, {
-      vpc: this.vpc,
-      description,
-    });
-  }
-
-
 }

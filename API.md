@@ -53,7 +53,9 @@ new Analytics(scope: Construct, id: string, props: AnalyticsProps)
 * **props** (<code>[AnalyticsProps](#cdk-soca-analyticsprops)</code>)  *No description*
   * **clusterId** (<code>string</code>)  *No description* 
   * **schedulerSecurityGroup** (<code>[ISecurityGroup](#aws-cdk-aws-ec2-isecuritygroup)</code>)  *No description* 
+  * **sechedulerPublicIp** (<code>string</code>)  *No description* 
   * **vpc** (<code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code>)  *No description* 
+  * **clientIpCidr** (<code>string</code>)  *No description* __*Optional*__
   * **domainName** (<code>string</code>)  *No description* __*Optional*__
 
 
@@ -170,6 +172,7 @@ Name | Type | Description
 -----|------|-------------
 **clusterId**🔹 | <code>string</code> | <span></span>
 **vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | <span></span>
+**natEip**?🔹 | <code>string</code> | __*Optional*__
 
 
 
@@ -203,6 +206,14 @@ new Scheduler(scope: Construct, id: string, props: SchedulerProps)
   * **customAmi** (<code>string</code>)  *No description* __*Optional*__
   * **instanceType** (<code>[InstanceType](#aws-cdk-aws-ec2-instancetype)</code>)  *No description* __*Optional*__
 
+
+
+### Properties
+
+
+Name | Type | Description 
+-----|------|-------------
+**publicIp**🔹 | <code>string</code> | <span></span>
 
 
 
@@ -250,7 +261,9 @@ Name | Type | Description
 -----|------|-------------
 **clusterId**🔹 | <code>string</code> | <span></span>
 **schedulerSecurityGroup**🔹 | <code>[ISecurityGroup](#aws-cdk-aws-ec2-isecuritygroup)</code> | <span></span>
+**sechedulerPublicIp**🔹 | <code>string</code> | <span></span>
 **vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | <span></span>
+**clientIpCidr**?🔹 | <code>string</code> | __*Optional*__
 **domainName**?🔹 | <code>string</code> | __*Optional*__
 
 
