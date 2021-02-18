@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.133](https://github.com/pahud/cdk-soca/compare/v0.1.132...v0.1.133) (2021-02-18)
+
+
+### Bug Fixes
+
+* scope down the ES principals ([4a308c9](https://github.com/pahud/cdk-soca/commit/4a308c9b821903f3378c0b5c5dfecdc5808bfc06))
+
 ### [0.1.132](https://github.com/pahud/cdk-soca/compare/v0.1.131...v0.1.132) (2021-02-18)
 
 ### [0.1.131](https://github.com/pahud/cdk-soca/compare/v0.1.130...v0.1.131) (2021-02-17)
