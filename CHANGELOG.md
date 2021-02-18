@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.136](https://github.com/pahud/cdk-soca/compare/v0.1.135...v0.1.136) (2021-02-18)
+
+
+### Bug Fixes
+
+* unable to create ES domain ([#163](https://github.com/pahud/cdk-soca/issues/163)) ([15fa9fd](https://github.com/pahud/cdk-soca/commit/15fa9fd51cb50411fd8eb98b1da3895cbbb5001e)), closes [#162](https://github.com/pahud/cdk-soca/issues/162) [#161](https://github.com/pahud/cdk-soca/issues/161)
+
 ### [0.1.135](https://github.com/pahud/cdk-soca/compare/v0.1.134...v0.1.135) (2021-02-18)
 
 ### [0.1.134](https://github.com/pahud/cdk-soca/compare/v0.1.133...v0.1.134) (2021-02-18)
