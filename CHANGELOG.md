@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.135](https://github.com/pahud/cdk-soca/compare/v0.1.134...v0.1.135) (2021-02-18)
+
 ### [0.1.134](https://github.com/pahud/cdk-soca/compare/v0.1.133...v0.1.134) (2021-02-18)
 
 
