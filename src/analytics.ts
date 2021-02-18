@@ -79,11 +79,14 @@ export class Analytics extends cdk.Construct {
 
   }
   private _createSecurityGroup(id: string, description?: string): ec2.ISecurityGroup {
-    return new ec2.SecurityGroup(this, id, {
+    const sg = new ec2.SecurityGroup(this, id, {
       vpc: this.vpc,
+      allowAllOutbound: false,
       description,
     });
+    sg.connections.allowToAnyIpv4(ec2.Port.allTcp());
+    sg.connections.allowToAnyIpv4(ec2.Port.allUdp());
+    sg.connections.allowToAnyIpv4(ec2.Port.allIcmp());
+    return sg;
   }
-
-
 }

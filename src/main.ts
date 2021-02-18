@@ -91,22 +91,38 @@ export class Workload extends cdk.Construct {
     // compute node security group
     const computeNodeSecurityGroup = new SecurityGroup(this, 'ComputeNodeSecurityGroup', {
       vpc: network.vpc,
+      allowAllOutbound: false,
     });
+
+    // explicitly allow the egress of the security group
+    computeNodeSecurityGroup.connections.allowToAnyIpv4(Port.allTcp());
+    computeNodeSecurityGroup.connections.allowToAnyIpv4(Port.allUdp());
+    computeNodeSecurityGroup.connections.allowToAnyIpv4(Port.allIcmp());
 
     /**
      * Allow all traffic internally
      */
-    computeNodeSecurityGroup.connections.allowInternally(Port.allTraffic());
+    computeNodeSecurityGroup.connections.allowInternally(Port.allTcp());
+    computeNodeSecurityGroup.connections.allowInternally(Port.allUdp());
+    computeNodeSecurityGroup.connections.allowInternally(Port.allIcmp());
 
     const schedulerSecurityGroup = new SecurityGroup(this, 'SchedulerSecurityGroup', {
       vpc: network.vpc,
+      allowAllOutbound: false,
     });
+
+    // explicitly allow the egress of the security group
+    schedulerSecurityGroup.connections.allowToAnyIpv4(Port.allTcp());
+    schedulerSecurityGroup.connections.allowToAnyIpv4(Port.allUdp());
+    schedulerSecurityGroup.connections.allowToAnyIpv4(Port.allIcmp());
 
     /**
      * SchedulerInboundRule
      * Allow all traffic from computeNodeSecurityGroup to schedulerSecurityGroup
      */
-    schedulerSecurityGroup.connections.allowFrom(computeNodeSecurityGroup, Port.allTraffic());
+    schedulerSecurityGroup.connections.allowFrom(computeNodeSecurityGroup, Port.allTcp());
+    schedulerSecurityGroup.connections.allowFrom(computeNodeSecurityGroup, Port.allUdp());
+    schedulerSecurityGroup.connections.allowFrom(computeNodeSecurityGroup, Port.allIcmp());
 
     /**
      * SchedulerInboundRuleAllowClientIP
@@ -125,7 +141,9 @@ export class Workload extends cdk.Construct {
     /**
      * Allow traffic between Master agent and compute nodes
      */
-    computeNodeSecurityGroup.connections.allowFrom(schedulerSecurityGroup, Port.allTraffic());
+    computeNodeSecurityGroup.connections.allowFrom(schedulerSecurityGroup, Port.allTcp());
+    computeNodeSecurityGroup.connections.allowFrom(schedulerSecurityGroup, Port.allUdp());
+
 
     /**
      * Allow ELB healtcheck to communicate with web ui on master host
