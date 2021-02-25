@@ -10,6 +10,12 @@ export interface AnalyticsProps {
   readonly domainName?: string;
   readonly clientIpCidr?: string;
   readonly sechedulerPublicIp: string;
+  /**
+   * removal policy for the ES
+   *
+   * @default RemovalPolicy.DESTROY
+   */
+  readonly removalPolicy?: cdk.RemovalPolicy;
   // readonly eipNat?: string;
 }
 
@@ -72,6 +78,7 @@ export class Analytics extends cdk.Construct {
         appLogEnabled: true,
         slowIndexLogEnabled: true,
       },
+      removalPolicy: props.removalPolicy ?? cdk.RemovalPolicy.DESTROY,
     });
 
     new cdk.CfnOutput(this, 'ESDomainArn:', { value: esDomain.domainArn });

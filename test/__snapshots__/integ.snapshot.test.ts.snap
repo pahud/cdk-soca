@@ -184,6 +184,7 @@ Object {
       "Type": "AWS::IAM::Role",
     },
     "AnalyticsElasticsearchDomain1703D8ED": Object {
+      "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "AnalyticsElasticsearchDomainESLogGroupPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6fCustomResourcePolicyECF8AEC3",
         "AnalyticsElasticsearchDomainESLogGroupPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6fDD7157E0",
@@ -249,6 +250,7 @@ Object {
         },
       },
       "Type": "AWS::Elasticsearch::Domain",
+      "UpdateReplacePolicy": "Delete",
     },
     "AnalyticsElasticsearchDomainAppLogs1E6C0316": Object {
       "DeletionPolicy": "Retain",

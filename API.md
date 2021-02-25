@@ -57,6 +57,7 @@ new Analytics(scope: Construct, id: string, props: AnalyticsProps)
   * **vpc** (<code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code>)  *No description* 
   * **clientIpCidr** (<code>string</code>)  *No description* __*Optional*__
   * **domainName** (<code>string</code>)  *No description* __*Optional*__
+  * **removalPolicy** (<code>[RemovalPolicy](#aws-cdk-core-removalpolicy)</code>)  removal policy for the ES. __*Default*__: RemovalPolicy.DESTROY
 
 
 
@@ -265,6 +266,7 @@ Name | Type | Description
 **vpc**🔹 | <code>[IVpc](#aws-cdk-aws-ec2-ivpc)</code> | <span></span>
 **clientIpCidr**?🔹 | <code>string</code> | __*Optional*__
 **domainName**?🔹 | <code>string</code> | __*Optional*__
+**removalPolicy**?🔹 | <code>[RemovalPolicy](#aws-cdk-core-removalpolicy)</code> | removal policy for the ES.<br/>__*Default*__: RemovalPolicy.DESTROY
 
 
 
