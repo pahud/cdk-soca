@@ -79,16 +79,16 @@ Object {
     },
   },
   "Parameters": Object {
-    "AssetParameters4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956ArtifactHashD15A2D11": Object {
-      "Description": "Artifact hash for asset \\"4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956\\"",
+    "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dArtifactHashBC261AD6": Object {
+      "Description": "Artifact hash for asset \\"a5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04d\\"",
       "Type": "String",
     },
-    "AssetParameters4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956S3Bucket72B03BC9": Object {
-      "Description": "S3 bucket for asset \\"4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956\\"",
+    "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3BucketDDD15B67": Object {
+      "Description": "S3 bucket for asset \\"a5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04d\\"",
       "Type": "String",
     },
-    "AssetParameters4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956S3VersionKey520B7554": Object {
-      "Description": "S3 key for asset version \\"4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956\\"",
+    "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3VersionKey76284988": Object {
+      "Description": "S3 key for asset version \\"a5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04d\\"",
       "Type": "String",
     },
     "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": Object {
@@ -104,7 +104,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956S3Bucket72B03BC9",
+            "Ref": "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3BucketDDD15B67",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -117,7 +117,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956S3VersionKey520B7554",
+                          "Ref": "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3VersionKey76284988",
                         },
                       ],
                     },
@@ -130,7 +130,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters4a3609ad912843e581892f37ae9d6fb0fa1648b547693aaa562b0119452b8956S3VersionKey520B7554",
+                          "Ref": "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3VersionKey76284988",
                         },
                       ],
                     },
@@ -268,51 +268,36 @@ Object {
       ],
       "Properties": Object {
         "Create": Object {
-          "action": "updateElasticsearchDomainConfig",
-          "outputPath": "DomainConfig.ElasticsearchClusterConfig.AccessPolicies",
-          "parameters": Object {
-            "AccessPolicies": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Condition\\":{\\"IpAddress\\":{\\"aws:SourceIp\\":[\\"",
-                  Object {
-                    "Ref": "SchedulerEIPScheduler20314FED",
-                  },
-                  "/32\\"]}},\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"AWS\\":\\"arn:",
-                  Object {
-                    "Ref": "AWS::Partition",
-                  },
-                  ":iam::",
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ":root\\"},\\"Resource\\":\\"arn:aws:es:ap-northeast-1:",
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ":domain/soca-soca-testing-stack/*\\"}],\\"Version\\":\\"2012-10-17\\"}",
-                ],
-              ],
-            },
-            "DomainName": Object {
-              "Ref": "AnalyticsElasticsearchDomain1703D8ED",
-            },
-          },
-          "physicalResourceId": Object {
-            "id": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  Object {
-                    "Ref": "AnalyticsElasticsearchDomain1703D8ED",
-                  },
-                  "AccessPolicy",
-                ],
-              ],
-            },
-          },
-          "service": "ES",
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"action\\":\\"updateElasticsearchDomainConfig\\",\\"service\\":\\"ES\\",\\"parameters\\":{\\"DomainName\\":\\"",
+              Object {
+                "Ref": "AnalyticsElasticsearchDomain1703D8ED",
+              },
+              "\\",\\"AccessPolicies\\":\\"{\\\\\\"Statement\\\\\\":[{\\\\\\"Action\\\\\\":\\\\\\"es:ESHttp*\\\\\\",\\\\\\"Condition\\\\\\":{\\\\\\"IpAddress\\\\\\":{\\\\\\"aws:SourceIp\\\\\\":[\\\\\\"",
+              Object {
+                "Ref": "SchedulerEIPScheduler20314FED",
+              },
+              "/32\\\\\\"]}},\\\\\\"Effect\\\\\\":\\\\\\"Allow\\\\\\",\\\\\\"Principal\\\\\\":{\\\\\\"AWS\\\\\\":\\\\\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":iam::",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":root\\\\\\"},\\\\\\"Resource\\\\\\":\\\\\\"arn:aws:es:ap-northeast-1:",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":domain/soca-soca-testing-stack/*\\\\\\"}],\\\\\\"Version\\\\\\":\\\\\\"2012-10-17\\\\\\"}\\"},\\"outputPath\\":\\"DomainConfig.ElasticsearchClusterConfig.AccessPolicies\\",\\"physicalResourceId\\":{\\"id\\":\\"",
+              Object {
+                "Ref": "AnalyticsElasticsearchDomain1703D8ED",
+              },
+              "AccessPolicy\\"}}",
+            ],
+          ],
         },
         "InstallLatestAwsSdk": true,
         "ServiceToken": Object {
@@ -322,51 +307,36 @@ Object {
           ],
         },
         "Update": Object {
-          "action": "updateElasticsearchDomainConfig",
-          "outputPath": "DomainConfig.ElasticsearchClusterConfig.AccessPolicies",
-          "parameters": Object {
-            "AccessPolicies": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "{\\"Statement\\":[{\\"Action\\":\\"es:ESHttp*\\",\\"Condition\\":{\\"IpAddress\\":{\\"aws:SourceIp\\":[\\"",
-                  Object {
-                    "Ref": "SchedulerEIPScheduler20314FED",
-                  },
-                  "/32\\"]}},\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"AWS\\":\\"arn:",
-                  Object {
-                    "Ref": "AWS::Partition",
-                  },
-                  ":iam::",
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ":root\\"},\\"Resource\\":\\"arn:aws:es:ap-northeast-1:",
-                  Object {
-                    "Ref": "AWS::AccountId",
-                  },
-                  ":domain/soca-soca-testing-stack/*\\"}],\\"Version\\":\\"2012-10-17\\"}",
-                ],
-              ],
-            },
-            "DomainName": Object {
-              "Ref": "AnalyticsElasticsearchDomain1703D8ED",
-            },
-          },
-          "physicalResourceId": Object {
-            "id": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  Object {
-                    "Ref": "AnalyticsElasticsearchDomain1703D8ED",
-                  },
-                  "AccessPolicy",
-                ],
-              ],
-            },
-          },
-          "service": "ES",
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"action\\":\\"updateElasticsearchDomainConfig\\",\\"service\\":\\"ES\\",\\"parameters\\":{\\"DomainName\\":\\"",
+              Object {
+                "Ref": "AnalyticsElasticsearchDomain1703D8ED",
+              },
+              "\\",\\"AccessPolicies\\":\\"{\\\\\\"Statement\\\\\\":[{\\\\\\"Action\\\\\\":\\\\\\"es:ESHttp*\\\\\\",\\\\\\"Condition\\\\\\":{\\\\\\"IpAddress\\\\\\":{\\\\\\"aws:SourceIp\\\\\\":[\\\\\\"",
+              Object {
+                "Ref": "SchedulerEIPScheduler20314FED",
+              },
+              "/32\\\\\\"]}},\\\\\\"Effect\\\\\\":\\\\\\"Allow\\\\\\",\\\\\\"Principal\\\\\\":{\\\\\\"AWS\\\\\\":\\\\\\"arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":iam::",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":root\\\\\\"},\\\\\\"Resource\\\\\\":\\\\\\"arn:aws:es:ap-northeast-1:",
+              Object {
+                "Ref": "AWS::AccountId",
+              },
+              ":domain/soca-soca-testing-stack/*\\\\\\"}],\\\\\\"Version\\\\\\":\\\\\\"2012-10-17\\\\\\"}\\"},\\"outputPath\\":\\"DomainConfig.ElasticsearchClusterConfig.AccessPolicies\\",\\"physicalResourceId\\":{\\"id\\":\\"",
+              Object {
+                "Ref": "AnalyticsElasticsearchDomain1703D8ED",
+              },
+              "AccessPolicy\\"}}",
+            ],
+          ],
         },
       },
       "Type": "Custom::ElasticsearchAccessPolicy",
@@ -434,52 +404,35 @@ Object {
       ],
       "Properties": Object {
         "Create": Object {
-          "action": "putResourcePolicy",
-          "parameters": Object {
-            "policyDocument": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "{\\"Statement\\":[{\\"Action\\":[\\"logs:PutLogEvents\\",\\"logs:CreateLogStream\\"],\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"Service\\":\\"es.amazonaws.com\\"},\\"Resource\\":[\\"",
-                  Object {
-                    "Fn::GetAtt": Array [
-                      "AnalyticsElasticsearchDomainSlowSearchLogs94984D80",
-                      "Arn",
-                    ],
-                  },
-                  "\\",\\"",
-                  Object {
-                    "Fn::GetAtt": Array [
-                      "AnalyticsElasticsearchDomainSlowIndexLogsB822CCCB",
-                      "Arn",
-                    ],
-                  },
-                  "\\",\\"",
-                  Object {
-                    "Fn::GetAtt": Array [
-                      "AnalyticsElasticsearchDomainAppLogs1E6C0316",
-                      "Arn",
-                    ],
-                  },
-                  "\\"]}],\\"Version\\":\\"2012-10-17\\"}",
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"service\\":\\"CloudWatchLogs\\",\\"action\\":\\"putResourcePolicy\\",\\"parameters\\":{\\"policyName\\":\\"ESLogPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f\\",\\"policyDocument\\":\\"{\\\\\\"Statement\\\\\\":[{\\\\\\"Action\\\\\\":[\\\\\\"logs:PutLogEvents\\\\\\",\\\\\\"logs:CreateLogStream\\\\\\"],\\\\\\"Effect\\\\\\":\\\\\\"Allow\\\\\\",\\\\\\"Principal\\\\\\":{\\\\\\"Service\\\\\\":\\\\\\"es.amazonaws.com\\\\\\"},\\\\\\"Resource\\\\\\":[\\\\\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AnalyticsElasticsearchDomainSlowSearchLogs94984D80",
+                  "Arn",
                 ],
-              ],
-            },
-            "policyName": "ESLogPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f",
-          },
-          "physicalResourceId": Object {
-            "id": "ESLogGroupPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f",
-          },
-          "service": "CloudWatchLogs",
+              },
+              "\\\\\\",\\\\\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AnalyticsElasticsearchDomainSlowIndexLogsB822CCCB",
+                  "Arn",
+                ],
+              },
+              "\\\\\\",\\\\\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AnalyticsElasticsearchDomainAppLogs1E6C0316",
+                  "Arn",
+                ],
+              },
+              "\\\\\\"]}],\\\\\\"Version\\\\\\":\\\\\\"2012-10-17\\\\\\"}\\"},\\"physicalResourceId\\":{\\"id\\":\\"ESLogGroupPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f\\"}}",
+            ],
+          ],
         },
-        "Delete": Object {
-          "action": "deleteResourcePolicy",
-          "ignoreErrorCodesMatching": "400",
-          "parameters": Object {
-            "policyName": "ESLogPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f",
-          },
-          "service": "CloudWatchLogs",
-        },
+        "Delete": "{\\"service\\":\\"CloudWatchLogs\\",\\"action\\":\\"deleteResourcePolicy\\",\\"parameters\\":{\\"policyName\\":\\"ESLogPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f\\"},\\"ignoreErrorCodesMatching\\":\\"400\\"}",
         "InstallLatestAwsSdk": true,
         "ServiceToken": Object {
           "Fn::GetAtt": Array [
@@ -488,43 +441,33 @@ Object {
           ],
         },
         "Update": Object {
-          "action": "putResourcePolicy",
-          "parameters": Object {
-            "policyDocument": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "{\\"Statement\\":[{\\"Action\\":[\\"logs:PutLogEvents\\",\\"logs:CreateLogStream\\"],\\"Effect\\":\\"Allow\\",\\"Principal\\":{\\"Service\\":\\"es.amazonaws.com\\"},\\"Resource\\":[\\"",
-                  Object {
-                    "Fn::GetAtt": Array [
-                      "AnalyticsElasticsearchDomainSlowSearchLogs94984D80",
-                      "Arn",
-                    ],
-                  },
-                  "\\",\\"",
-                  Object {
-                    "Fn::GetAtt": Array [
-                      "AnalyticsElasticsearchDomainSlowIndexLogsB822CCCB",
-                      "Arn",
-                    ],
-                  },
-                  "\\",\\"",
-                  Object {
-                    "Fn::GetAtt": Array [
-                      "AnalyticsElasticsearchDomainAppLogs1E6C0316",
-                      "Arn",
-                    ],
-                  },
-                  "\\"]}],\\"Version\\":\\"2012-10-17\\"}",
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{\\"service\\":\\"CloudWatchLogs\\",\\"action\\":\\"putResourcePolicy\\",\\"parameters\\":{\\"policyName\\":\\"ESLogPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f\\",\\"policyDocument\\":\\"{\\\\\\"Statement\\\\\\":[{\\\\\\"Action\\\\\\":[\\\\\\"logs:PutLogEvents\\\\\\",\\\\\\"logs:CreateLogStream\\\\\\"],\\\\\\"Effect\\\\\\":\\\\\\"Allow\\\\\\",\\\\\\"Principal\\\\\\":{\\\\\\"Service\\\\\\":\\\\\\"es.amazonaws.com\\\\\\"},\\\\\\"Resource\\\\\\":[\\\\\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AnalyticsElasticsearchDomainSlowSearchLogs94984D80",
+                  "Arn",
                 ],
-              ],
-            },
-            "policyName": "ESLogPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f",
-          },
-          "physicalResourceId": Object {
-            "id": "ESLogGroupPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f",
-          },
-          "service": "CloudWatchLogs",
+              },
+              "\\\\\\",\\\\\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AnalyticsElasticsearchDomainSlowIndexLogsB822CCCB",
+                  "Arn",
+                ],
+              },
+              "\\\\\\",\\\\\\"",
+              Object {
+                "Fn::GetAtt": Array [
+                  "AnalyticsElasticsearchDomainAppLogs1E6C0316",
+                  "Arn",
+                ],
+              },
+              "\\\\\\"]}],\\\\\\"Version\\\\\\":\\\\\\"2012-10-17\\\\\\"}\\"},\\"physicalResourceId\\":{\\"id\\":\\"ESLogGroupPolicyc84d1f90df20fc947b9f9aad57f8157fbf95be4f6f\\"}}",
+            ],
+          ],
         },
       },
       "Type": "Custom::CloudwatchLogResourcePolicy",

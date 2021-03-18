@@ -16,7 +16,7 @@ const project = new AwsCdkConstructLibrary({
   autoReleaseSchedule: 'never',
   dependabot: false,
   defaultReleaseBranch: 'main',
-  devDeps: [ 'projen-automate-it' ],
+  devDeps: ['projen-automate-it'],
   keywords: [
     'cdk',
     'aws',
