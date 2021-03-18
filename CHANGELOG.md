@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.16](https://github.com/pahud/cdk-soca/compare/v0.2.15...v0.2.16) (2021-03-06)
+
+### [0.2.15](https://github.com/pahud/cdk-soca/compare/v0.2.14...v0.2.15) (2021-03-05)
+
+### [0.2.14](https://github.com/pahud/cdk-soca/compare/v0.2.13...v0.2.14) (2021-03-04)
+
+### [0.2.13](https://github.com/pahud/cdk-soca/compare/v0.2.12...v0.2.13) (2021-03-03)
+
+### [0.2.12](https://github.com/pahud/cdk-soca/compare/v0.2.11...v0.2.12) (2021-03-02)
+
+### [0.2.11](https://github.com/pahud/cdk-soca/compare/v0.2.10...v0.2.11) (2021-03-01)
+
+### [0.2.10](https://github.com/pahud/cdk-soca/compare/v0.2.9...v0.2.10) (2021-02-28)
+
+### [0.2.9](https://github.com/pahud/cdk-soca/compare/v0.2.8...v0.2.9) (2021-02-27)
+
+### [0.2.8](https://github.com/pahud/cdk-soca/compare/v0.2.7...v0.2.8) (2021-02-26)
+
+### [0.2.7](https://github.com/pahud/cdk-soca/compare/v0.2.6...v0.2.7) (2021-02-25)
+
+### [0.2.6](https://github.com/pahud/cdk-soca/compare/v0.2.5...v0.2.6) (2021-02-25)
+
 ### [0.2.5](https://github.com/pahud/cdk-soca/compare/v0.2.4...v0.2.5) (2021-02-23)
 
 ### [0.2.4](https://github.com/pahud/cdk-soca/compare/v0.2.3...v0.2.4) (2021-02-21)
