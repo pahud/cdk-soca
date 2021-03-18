@@ -68,8 +68,12 @@
       "type": "build"
     },
     {
+      "name": "projen-automate-it",
+      "type": "build"
+    },
+    {
       "name": "projen",
-      "version": "^0.16.36",
+      "version": "^0.17.16",
       "type": "build"
     },
     {
