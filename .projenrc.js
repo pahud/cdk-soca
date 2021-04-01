@@ -1,7 +1,7 @@
 const { AwsCdkConstructLibrary } = require('projen');
 const { Automation } = require('projen-automate-it');
 
-const AWS_CDK_LATEST_RELEASE = '1.77.0';
+const AWS_CDK_LATEST_RELEASE = '1.96.0';
 const PROJECT_NAME = 'cdk-soca';
 const PROJECT_DESCRIPTION = 'cdk-soca is an AWS CDK construct library that allows you to create the Scale-Out Computing on AWS with AWS CDK in TypeScript or Python';
 const AUTOMATION_TOKEN = 'AUTOMATION_GITHUB_TOKEN';
@@ -28,9 +28,6 @@ const project = new AwsCdkConstructLibrary({
     announce: false,
   },
 
-  // creates PRs for projen upgrades
-  //projenUpgradeSecret: 'AUTOMATION_GITHUB_TOKEN',
-
   cdkVersion: AWS_CDK_LATEST_RELEASE,
   cdkDependencies: [
     '@aws-cdk/core',
@@ -51,14 +48,7 @@ const automation = new Automation(project, {
   automationToken: AUTOMATION_TOKEN,
 });
 
-// generate auto-approve workflow
-automation.autoApprove();
-// generate auto-merge workflow
-automation.autoMerge();
-// generate auto yarn and projen upgrade workflow
 automation.projenYarnUpgrade();
-automation.projenYarnUpgrade('ProjenYarnUpgradeTest', { yarnTest: true });
-
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'images', 'yarn-error.log', '.devcontainer.json'];
 project.npmignore.exclude(...common_exclude);
