@@ -79,21 +79,17 @@ Object {
     },
   },
   "Parameters": Object {
-    "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dArtifactHashBC261AD6": Object {
-      "Description": "Artifact hash for asset \\"a5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04d\\"",
+    "AssetParameters11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0dArtifactHash80EE9514": Object {
+      "Description": "Artifact hash for asset \\"11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0d\\"",
       "Type": "String",
     },
-    "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3BucketDDD15B67": Object {
-      "Description": "S3 bucket for asset \\"a5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04d\\"",
+    "AssetParameters11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0dS3Bucket3E962F58": Object {
+      "Description": "S3 bucket for asset \\"11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0d\\"",
       "Type": "String",
     },
-    "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3VersionKey76284988": Object {
-      "Description": "S3 key for asset version \\"a5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04d\\"",
+    "AssetParameters11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0dS3VersionKey0C75EEFB": Object {
+      "Description": "S3 key for asset version \\"11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0d\\"",
       "Type": "String",
-    },
-    "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": Object {
-      "Default": "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2",
-      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
     },
   },
   "Resources": Object {
@@ -104,7 +100,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3BucketDDD15B67",
+            "Ref": "AssetParameters11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0dS3Bucket3E962F58",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -117,7 +113,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3VersionKey76284988",
+                          "Ref": "AssetParameters11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0dS3VersionKey0C75EEFB",
                         },
                       ],
                     },
@@ -130,7 +126,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersa5a55f40f05c1031f30cc935c76b58b0b7dbc81e70845edf4ef615d6580ae04dS3VersionKey76284988",
+                          "Ref": "AssetParameters11a850054982c7a762dfcb33f4b473b67940073fd1db01635b64b04c0529ba0dS3VersionKey0C75EEFB",
                         },
                       ],
                     },
@@ -1766,9 +1762,7 @@ Object {
         "IamInstanceProfile": Object {
           "Ref": "SchedulerInstanceProfileE3AED890",
         },
-        "ImageId": Object {
-          "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
-        },
+        "ImageId": "{{resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2}}",
         "InstanceType": "m5.large",
         "SecurityGroupIds": Array [
           Object {
@@ -1837,11 +1831,7 @@ echo export \\"AWS_DEFAULT_REGION=ap-northeast-1 \\" >> /etc/environment
 echo export \\"SOCA_INSTALL_BUCKET=solutions-reference\\" >> /etc/environment
 echo export \\"SOCA_INSTALL_BUCKET_FOLDER=scale-out-computing-on-aws/v2.5.0\\" >> /etc/environment
 echo export \\"SOCA_VERSION=2.5.0\\" >> /etc/environment
-echo export \\"SOCA_INSTALL_AMI=",
-                Object {
-                  "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter",
-                },
-                "\\" >> /etc/environment
+echo export \\"SOCA_INSTALL_AMI={{resolve:ssm:/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2}}\\" >> /etc/environment
 source /etc/environment
 
 # Tag EBS disks manually as CFN ASG does not support it
