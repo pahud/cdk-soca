@@ -1,5 +1,5 @@
-const { AwsCdkConstructLibrary } = require('projen');
 const { Automation } = require('projen-automate-it');
+const { AwsCdkConstructLibrary } = require('projen');
 
 const AWS_CDK_LATEST_RELEASE = '1.96.0';
 const PROJECT_NAME = 'cdk-soca';
