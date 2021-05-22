@@ -1,10 +1,8 @@
 const { AwsCdkConstructLibrary } = require('projen');
-const { Automation } = require('projen-automate-it');
 
 const AWS_CDK_LATEST_RELEASE = '1.96.0';
 const PROJECT_NAME = 'cdk-soca';
 const PROJECT_DESCRIPTION = 'cdk-soca is an AWS CDK construct library that allows you to create the Scale-Out Computing on AWS with AWS CDK in TypeScript or Python';
-const AUTOMATION_TOKEN = 'AUTOMATION_GITHUB_TOKEN';
 
 const project = new AwsCdkConstructLibrary({
   name: PROJECT_NAME,
@@ -44,11 +42,6 @@ const project = new AwsCdkConstructLibrary({
   },
 });
 
-const automation = new Automation(project, {
-  automationToken: AUTOMATION_TOKEN,
-});
-
-automation.projenYarnUpgrade();
 
 const common_exclude = ['cdk.out', 'cdk.context.json', 'images', 'yarn-error.log', '.devcontainer.json'];
 project.npmignore.exclude(...common_exclude);
