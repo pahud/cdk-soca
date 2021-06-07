@@ -3,7 +3,7 @@ const { AwsCdkConstructLibrary, DependenciesUpgradeMechanism } = require('projen
 const AWS_CDK_LATEST_RELEASE = '1.96.0';
 const PROJECT_NAME = 'cdk-soca';
 const PROJECT_DESCRIPTION = 'cdk-soca is an AWS CDK construct library that allows you to create the Scale-Out Computing on AWS with AWS CDK in TypeScript or Python';
-const AUTOMATION_TOKEN = 'PROJEN_GITHUB_TOKEN'
+const AUTOMATION_TOKEN = 'PROJEN_GITHUB_TOKEN';
 
 const project = new AwsCdkConstructLibrary({
   name: PROJECT_NAME,
